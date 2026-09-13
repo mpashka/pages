@@ -1,0 +1,1045 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ko je podigao cene u Srbiji</title>
+<meta name="description" content="Da li su ruski migranti 2022. podigli cene stanova u Srbiji? Podaci RGZ, RZS, NBS i Eurostata na srpskom, ruskom i engleskom.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Unbounded:wght@500;700&display=swap&subset=cyrillic,latin-ext">
+<style>
+:root {
+  color-scheme: light;
+  --ground: #eef0eb;
+  --paper: #f8f9f6;
+  --ink: #16232a;
+  --ink-2: #4a5a62;
+  --ink-3: #6f7d84;
+  --rule: #d3d8d1;
+  --rule-strong: #aab3ad;
+  --signal-ink: #8a5a00;
+  --s-blue: #2a78d6;
+  --s-aqua: #1baf7a;
+  --s-violet: #4a3aa7;
+  --s-amber: #eda100;
+  --s-slate: #9aa6ad;
+  --s-hatch: #c4cbc6;
+  --line-ctrl: #a9b3b8;
+  --focus: #2a78d6;
+  --font-display: "Unbounded", "Arial Black", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground: #12181b;
+    --paper: #182024;
+    --ink: #e4eae7;
+    --ink-2: #a9b6bb;
+    --ink-3: #85949a;
+    --rule: #2a353a;
+    --rule-strong: #43525a;
+    --signal-ink: #e8b04a;
+    --s-blue: #3987e5;
+    --s-aqua: #199e70;
+    --s-violet: #9085e9;
+    --s-amber: #c98500;
+    --s-slate: #62717a;
+    --s-hatch: #3a474d;
+    --line-ctrl: #56656c;
+    --focus: #6aa8f0;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #12181b;
+  --paper: #182024;
+  --ink: #e4eae7;
+  --ink-2: #a9b6bb;
+  --ink-3: #85949a;
+  --rule: #2a353a;
+  --rule-strong: #43525a;
+  --signal-ink: #e8b04a;
+  --s-blue: #3987e5;
+  --s-aqua: #199e70;
+  --s-violet: #9085e9;
+  --s-amber: #c98500;
+  --s-slate: #62717a;
+  --s-hatch: #3a474d;
+  --line-ctrl: #56656c;
+  --focus: #6aa8f0;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font: 400 16px/1.6 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-color: var(--rule-strong); text-underline-offset: 3px; }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; }
+.measure { max-width: 68ch; }
+
+/* top strip */
+.strip {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--ground) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+}
+.strip .wrap { display: flex; align-items: center; gap: 16px; min-height: 52px; flex-wrap: wrap; padding-block: 6px; }
+.strip nav { display: flex; gap: 4px 14px; flex-wrap: wrap; flex: 1; font-size: 13px; }
+.strip nav a { text-decoration: none; color: var(--ink-2); white-space: nowrap; }
+.strip nav a:hover { color: var(--ink); }
+.lang { display: flex; border: 1px solid var(--rule-strong); border-radius: 999px; overflow: hidden; }
+.lang button {
+  font: 500 12px/1 var(--font-mono); letter-spacing: .06em;
+  background: transparent; color: var(--ink-2); border: 0; padding: 8px 12px; cursor: pointer;
+}
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--ground); }
+
+/* hero */
+.hero { padding-block: 44px 20px; }
+.eyebrow {
+  font: 500 12px/1.3 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3);
+}
+h1 {
+  font: 700 clamp(30px, 5.4vw, 58px)/1.04 var(--font-display);
+  letter-spacing: -.02em; margin: 12px 0 18px; text-wrap: balance; max-width: 18ch;
+}
+.verdict { font-size: clamp(18px, 2.2vw, 22px); line-height: 1.45; max-width: 46ch; margin: 0; text-wrap: pretty; }
+.verdict mark { background: none; color: var(--signal-ink); font-weight: 600; }
+.period { margin-top: 14px; font: 400 13px/1.5 var(--font-mono); color: var(--ink-3); }
+
+/* ledger of four donuts */
+.ledger {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule);
+  margin-block: 28px 12px;
+}
+@media (max-width: 980px) { .ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .ledger { grid-template-columns: 1fr; } }
+.entry { padding: 18px 18px 20px; display: grid; gap: 10px; align-content: start; border-right: 1px solid var(--rule); }
+.entry:last-child { border-right: 0; }
+@media (max-width: 980px) {
+  .entry:nth-child(2n) { border-right: 0; }
+  .entry:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+}
+@media (max-width: 560px) { .entry { border-right: 0; border-bottom: 1px solid var(--rule); } .entry:last-child { border-bottom: 0; } }
+.entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.entry-name { font-weight: 600; font-size: 15px; }
+.entry-basis { font: 400 11px/1.3 var(--font-mono); color: var(--ink-3); text-align: right; }
+.donut-row { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 14px; align-items: center; }
+@media (min-width: 981px) { .donut-row { grid-template-columns: minmax(0, 1fr); justify-items: start; gap: 16px; } }
+.entry { min-width: 0; }
+.donut { width: 132px; height: 132px; display: block; overflow: visible; }
+.donut path { cursor: pointer; transition: opacity .15s; }
+.donut:hover path { opacity: .55; }
+.donut path:hover, .donut path:focus-visible { opacity: 1; }
+.donut .big { font: 700 22px/1 var(--font-display); fill: var(--ink); }
+.donut .small { font: 400 10px/1 var(--font-mono); fill: var(--ink-3); }
+.keys { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 13px; line-height: 1.3; width: 100%; }
+.keys a { display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; gap: 8px; align-items: baseline; text-decoration: none; color: var(--ink); }
+.keys a:hover .k-name { text-decoration: underline; text-underline-offset: 3px; }
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; transform: translateY(1px); }
+.k-val { font: 500 13px/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.k-signal .k-name, .k-signal .k-val { color: var(--signal-ink); font-weight: 600; }
+.entry-more { font-size: 13px; color: var(--ink-2); }
+.note-small { font-size: 13px; color: var(--ink-3); max-width: 80ch; }
+
+/* sections */
+section.topic { padding-block: 56px 8px; border-top: 1px solid var(--rule); }
+.topic-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 24px; align-items: end; }
+@media (max-width: 700px) { .topic-head { grid-template-columns: 1fr; } }
+h2 { font: 700 clamp(24px, 3.4vw, 36px)/1.1 var(--font-display); letter-spacing: -.015em; margin: 8px 0 0; text-wrap: balance; }
+.topic-figure { font: 700 clamp(32px, 5vw, 52px)/1 var(--font-display); color: var(--ink); text-align: right; }
+.topic-figure small { display: block; font: 400 12px/1.4 var(--font-mono); color: var(--ink-3); margin-top: 6px; }
+@media (max-width: 700px) { .topic-figure { text-align: left; } }
+.lead { font-size: 18px; line-height: 1.55; margin: 18px 0 0; max-width: 64ch; text-wrap: pretty; }
+
+.panel { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 18px 18px 12px; margin-top: 26px; }
+.panel h3 { margin: 0; font-size: 15px; font-weight: 600; }
+.panel .sub { margin: 2px 0 10px; font: 400 12px/1.5 var(--font-mono); color: var(--ink-3); }
+.chart { position: relative; overflow-x: auto; }
+.chart svg { display: block; width: 100%; height: auto; min-width: 520px; }
+.chart svg text { fill: var(--ink-2); font: 400 11px var(--font-mono); }
+.chart .axis line, .chart .grid line { stroke: var(--rule); }
+.chart .zero { stroke: var(--rule-strong); }
+.chart .pin line { stroke: var(--ink); stroke-dasharray: 3 3; opacity: .55; }
+.chart .pin text { fill: var(--ink); font-weight: 500; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; margin: 4px 0 8px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 18px; height: 3px; border-radius: 2px; display: inline-block; }
+.tip {
+  position: absolute; pointer-events: none; background: var(--ink); color: var(--ground);
+  font: 400 12px/1.45 var(--font-mono); padding: 8px 10px; border-radius: 4px; white-space: nowrap;
+  transform: translate(-50%, calc(-100% - 10px)); z-index: 3;
+}
+.tip b { font-weight: 500; }
+
+.bars { display: grid; grid-template-columns: minmax(0, max-content) minmax(0, 1fr); gap: 6px 14px; align-items: center; font-size: 13px; }
+.bars .b-label { color: var(--ink-2); text-align: right; }
+.bars .b-track { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.bars .b-bar { height: 14px; border-radius: 0 3px 3px 0; background: var(--s-slate); flex: none; }
+.bars .b-val { font: 500 12px/1 var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); }
+.bars .hi.b-label { color: var(--ink); font-weight: 600; }
+.bars .hi .b-bar { background: var(--ink); }
+@media (max-width: 560px) {
+  .bars { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .bars .b-label { text-align: left; margin-top: 6px; }
+}
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 20px; }
+@media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
+
+/* factors (drill-down) */
+.factors { margin-top: 26px; border-top: 2px solid var(--ink); }
+details.factor { border-bottom: 1px solid var(--rule); }
+details.factor > summary {
+  list-style: none; cursor: pointer; display: grid; grid-template-columns: 14px minmax(0, 1fr) auto 18px;
+  gap: 12px; align-items: baseline; padding: 14px 2px;
+}
+details.factor > summary::-webkit-details-marker { display: none; }
+.f-name { font-weight: 600; font-size: 16px; }
+.f-sum { display: block; font-weight: 400; color: var(--ink-2); font-size: 14px; margin-top: 2px; }
+.f-share { font: 700 20px/1 var(--font-display); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.f-signal .f-share, .f-signal .f-name { color: var(--signal-ink); }
+.chev { font: 400 16px/1 var(--font-mono); color: var(--ink-3); transition: transform .15s; }
+details[open] > summary .chev { transform: rotate(90deg); }
+details.factor:target > summary, details.factor.flash > summary { background: color-mix(in srgb, var(--s-amber) 14%, transparent); }
+.evidence { list-style: none; margin: 0 0 16px 26px; padding: 0; display: grid; gap: 10px; max-width: 76ch; }
+.evidence li { padding-left: 14px; border-left: 2px solid var(--rule); font-size: 15px; }
+.cite { font: 500 11px/1 var(--font-mono); letter-spacing: .02em; text-decoration: none; color: var(--ink-2);
+  border: 1px solid var(--rule-strong); border-radius: 3px; padding: 2px 5px; margin-left: 4px; white-space: nowrap; display: inline-block; transform: translateY(-1px); }
+.cite:hover { color: var(--ink); border-color: var(--ink); }
+
+/* numbers grid for migrants */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0; margin-top: 26px; border-top: 2px solid var(--ink); }
+.fact { padding: 16px 16px 16px 0; border-bottom: 1px solid var(--rule); }
+.fact b { display: block; font: 700 26px/1.1 var(--font-display); }
+.fact span { display: block; font-size: 14px; color: var(--ink-2); margin-top: 6px; }
+
+/* table */
+.tbl-wrap { overflow-x: auto; margin-top: 14px; }
+table { border-collapse: collapse; font-size: 14px; min-width: 460px; width: 100%; }
+th, td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font: 500 11px/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+th.num { text-align: right; }
+
+/* sources */
+.sources { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 0; }
+.sources li { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 14px; }
+@media (max-width: 560px) { .sources li { grid-template-columns: 1fr; gap: 2px; } }
+.sources li:target { background: color-mix(in srgb, var(--s-amber) 16%, transparent); }
+.src-id { font: 500 12px/1.5 var(--font-mono); color: var(--ink-2); }
+.src-kind { font: 500 10px/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); border: 1px solid var(--rule-strong); border-radius: 3px; padding: 2px 4px; margin-right: 6px; }
+.src-title { overflow-wrap: anywhere; }
+.src-back { font: 400 12px var(--font-mono); color: var(--ink-3); margin-left: 6px; }
+
+footer { padding-block: 40px 60px; color: var(--ink-3); font-size: 13px; border-top: 1px solid var(--rule); margin-top: 56px; }
+.prose p { max-width: 70ch; margin: 14px 0 0; }
+.prose ul { max-width: 70ch; padding-left: 20px; }
+.prose li { margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="var(--s-hatch)"></rect>
+      <line x1="0" y1="0" x2="0" y2="6" stroke="var(--s-slate)" stroke-width="2"></line>
+    </pattern>
+  </defs>
+</svg>
+
+<header class="strip">
+  <div class="wrap">
+    <nav id="nav" aria-label="Sections"></nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-sr" data-lang="sr">SR</button>
+      <button type="button" id="lang-ru" data-lang="ru">RU</button>
+      <button type="button" id="lang-en" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="app" class="wrap"></main>
+
+<script>
+/* ---------- data (primary series; see sources) ---------- */
+const DATA = {
+  rentMonths: (() => { const a = []; for (let y = 2019; y <= 2024; y++) for (let m = 1; m <= 12; m++) { const k = `${y}-${String(m).padStart(2,"0")}`; if (k >= "2019-12") a.push(k); } return a; })(),
+  // actual rentals (HICP CP041) deflated by each country's own HICP, Dec 2021 = 100
+  rentReal: {
+    RS:[101.7,101.2,100.6,100.7,100.5,100.8,100.2,99.9,100.6,101.1,101.0,101.0,101.0,100.6,100.0,100.3,99.8,99.5,99.8,99.5,98.7,97.8,99.3,98.5,100.0,102.6,101.4,101.9,104.1,103.7,102.0,106.6,106.1,104.5,110.2,111.6,111.3,113.0,116.6,116.3,113.9,112.7,108.6,109.2,106.8,107.1,107.3,108.8,108.9,109.8,109.4,109.5,111.0,116.3,117.2,118.1,117.8,118.3,118.3,117.9,117.7],
+    ME:[104.4,104.5,104.6,104.3,105.0,105.0,104.9,105.1,105.0,104.6,104.8,105.1,105.0,104.8,104.3,103.8,102.6,101.8,101.5,101.0,100.8,100.6,100.4,100.2,100.0,98.5,97.3,95.5,93.7,95.8,94.1,92.4,92.1,92.7,91.9,103.6,112.9,112.5,112.0,113.1,117.4,116.7,114.8,113.2,111.4,113.7,117.5,118.0,118.6,118.4,118.4,118.6,118.6,118.5,118.0,117.7,117.6,119.6,120.0,120.7,121.6],
+    HR:[103.0,103.7,104.2,104.3,104.3,105.1,103.0,102.5,102.8,103.0,102.8,103.0,103.0,104.1,103.8,102.5,102.0,101.4,101.4,100.0,100.4,100.6,99.9,99.4,100.0,100.4,99.4,98.2,95.5,94.4,93.2,91.8,92.7,92.8,91.9,91.3,92.7,93.0,94.4,94.1,93.5,92.5,91.2,90.4,90.7,92.1,92.4,93.0,93.6,94.0,94.5,94.3,93.3,92.9,92.1,92.1,91.6,91.6,91.8,92.4,94.0],
+    BG:[101.8,102.0,102.9,103.5,104.0,104.4,104.5,103.8,103.4,104.8,104.6,104.7,104.2,104.6,104.1,104.1,103.4,103.7,103.7,102.9,102.3,102.4,101.0,100.2,100.0,99.6,100.4,99.7,97.8,97.2,96.2,95.7,95.2,95.2,94.6,94.7,94.2,96.2,96.4,96.7,96.3,97.0,97.0,95.9,95.8,96.1,96.4,96.5,96.8,98.3,98.2,98.3,98.5,98.7,99.6,99.2,99.2,100.7,100.2,100.0,99.6],
+    HU:[104.8,104.9,106.0,105.9,103.8,103.0,103.3,101.6,102.8,102.1,101.8,101.8,102.1,101.2,100.9,100.2,99.3,99.3,99.4,99.2,99.9,100.6,100.2,99.8,100.0,99.4,99.9,99.0,98.3,97.7,97.0,95.9,94.8,93.9,92.9,92.8,91.6,90.3,90.0,90.2,90.4,91.8,92.3,93.2,94.3,95.3,96.4,96.7,97.4,99.2,99.4,99.4,99.4,99.7,100.7,100.0,100.9,102.4,103.0,103.2,104.7]
+  },
+  // RGZ quarterly reports, Belgrade, resale flats, mean price of homogenised sample, EUR/m2
+  bgdQuarters: ["2019 I","2019 II","2019 III","2019 IV","2020 I","2020 II","2020 III","2020 IV","2021 I","2021 II","2021 III","2021 IV","2022 I","2022 II","2022 III","2022 IV","2023 I","2023 II","2023 III","2023 IV","2024 I","2024 II","2024 III","2024 IV"],
+  bgdResale: [1261,1296,1290,1334,1345,1361,1371,1400,1459,1504,1545,1627,1680,1773,1863,1940,2013,2083,2070,2070,2122,2190,2225,2312],
+  // Eurostat HPI (Q4 2019 -> Q4 2025, %) and RGZ index for Serbia
+  hpi: [["HU",126],["BG",92],["HR",91],["RS",81],["CZ",74],["PL",74],["SI",68],["SK",56],["RO",35],["EU27",34],["AT",32]],
+  // HICP food, Dec 2019 -> Dec 2025, %
+  food: [["HU",77.7],["BG",61.0],["RO",60.1],["RS",58.9],["MK",57.2],["HR",47.6],["ME",47.3],["EU27",38.3]],
+  // Serbian HICP by COICOP 2018 division: growth Dec 2019 -> Dec 2025 (%), average weight 2020-2025 (%)
+  cpi: [["CP011",58.9,29.8],["CP045",57.2,8.6],["CP02",50.7,8.0],["CP07",23.6,13.0],["CP11",70.3,3.5],["CP041",72.0,1.1],["CP09",58.6,3.5],["CP06",37.0,5.8],["CP05",43.2,4.9],["CP13",42.8,4.0],["CP03",24.7,4.9],["CP08",15.2,7.3]]
+};
+
+/* ---------- sources ---------- */
+const SRC = {
+  "RGZ-IDX":   ["P","RGZ — Indeks cena stanova (kvartalni izveštaji, I kv. 2019 = 100)","https://www.rgz.gov.rs/rgz-indeks-cena-stanova"],
+  "RGZ-2026":  ["P","RGZ — Indeks cena stanova, II kvartal 2026 (PDF)","https://www.rgz.gov.rs/content/docs/000/000/007/РГЗ%20-%20Индекс%20цена%20станова%20T2%202026-фин.pdf"],
+  "RGZ-REP":   ["P","RGZ — Kvartalni, polugodišnji i godišnji izveštaji o tržištu nepokretnosti","https://www.rgz.gov.rs/kvartalni-polugodišnji-i-godišnji-izveštaji"],
+  "RGZ-Q4-22": ["P","RGZ — Izveštaj o stanju na tržištu nepokretnosti, IV kvartal 2022 (PDF)","https://www.rgz.gov.rs/content/docs/000/000/006/Izvestaj%20o%20stanju%20na%20trzistu%20nepokretnosti%20IV%20kvartal%202022.%20godine%20(2).pdf"],
+  "RGZ-2023":  ["P","RGZ — Izveštaj pokazuje stabilizaciju na tržištu nepokretnosti u 2023","https://www.rgz.gov.rs/vesti/izve%C5%A1taj-rgz-a-pokazuje-stabilizaciju-na-tr%C5%BEi%C5%A1tu-nepokretnosti-u-2023-godini"],
+  "RGZ-Q4-23": ["P","RGZ — Cene stanova u IV tromesečju 2023 skuplje za 5,75%","https://www.rgz.gov.rs/vesti/cene-stanova-u-srbiji-u-%C4%8Detvrtom-tromese%C4%8Dju-2023-nastavile-rast-stanovi-skuplji-za-575-u-odnosu-na-pro%C5%A1lu-godinu"],
+  "ES-HICP":   ["P","Eurostat — HICP monthly index, prc_hicp_minr (RS, ME, HR, BG, HU, EU27)","https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table"],
+  "ES-HICPW":  ["P","Eurostat — HICP item weights, prc_hicp_iw (Serbia)","https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_iw/default/table"],
+  "ES-HPI":    ["P","Eurostat — House price index, prc_hpi_q","https://ec.europa.eu/eurostat/databrowser/view/prc_hpi_q/default/table"],
+  "NBS-IR":    ["P","NBS — Inflation Report, May 2023 (PDF)","https://www.nbs.rs/export/sites/NBS_site/documents-eng/publikacije/ioi/izvestaji/inflation_report_05_2023.pdf"],
+  "NBS-FSR":   ["P","NBS — Financial Stability Report 2024 (PDF)","https://www.nbs.rs/export/sites/NBS_site/documents-eng/publikacije/fs/fsr_2024.pdf"],
+  "NBS-RATES": ["P","NBS — kamatne stope na stambene kredite","https://www.nbs.rs/sr/scripts/showcontent/index.html?id=19162&konverzija=no"],
+  "WB-FOOD":   ["P","World Bank — Food price inflation in the Western Balkans, 2023 (PDF)","https://documents1.worldbank.org/curated/en/099042023104012719/pdf/P179478085f70601a0aac3035c4560691ca.pdf"],
+  "GITOC":     ["P","GI-TOC — Illicit finance in the Western Balkans","https://globalinitiative.net/analysis/illicit-finance-western-balkans/"],
+  "RFE-53K":   ["M","Radio Slobodna Evropa — Rusi u Srbiji: boravak stranih državljana (RZS podaci)","https://www.slobodnaevropa.org/a/rusi-u-srbiji-boravak-strani-drzavljani/33429658.html"],
+  "BCBP":      ["M","Reunir Horizon / BCBP — Political views of the Russian community in Serbia (MUP data)","https://reunir-horizon.eu/against-the-war-and-putin-political-views-of-the-russian-community-in-serbia/"],
+  "NE-FIRMS":  ["M","Nova ekonomija — Broj ruskih firmi u Srbiji skočio za 1.000%","https://novaekonomija.rs/vesti-iz-zemlje/broj-ruskih-firmi-u-srbiji-od-pocetka-rata-skocio-za-1-000-odsto"],
+  "BIZ-RU":    ["M","Biznis.rs — Vrednost doznaka iz Rusije (NBS)","https://biznis.rs/vesti/srbija/vrednost-doznaka-koje-stizu-iz-rusije-u-srbiju-nije-se-znacajno-smanjila/"],
+  "BA-REMIT":  ["M","Bloomberg Adria — Doznake iz inostranstva skoro pet milijardi evra","https://rs.bloombergadria.com/ekonomija/srbija/62045/doznake-iz-inostranstva-i-prosle-godine-skoro-pet-milijardi-evra/news"],
+  "BA-180M":   ["M","Bloomberg Adria — Rusi u Srbiji potrošili 180 miliona evra na stanove","https://rs.bloombergadria.com/bloomberg-adria-tv/bloomberg-adria-tv/54986/rusi-u-srbiji-potrosili-180-miliona-evra-na-kupovinu-stanova/news"],
+  "BA-CREDIT": ["M","Bloomberg Adria — Samo 26% stanova kupljeno na kredit 2022","https://rs.bloombergadria.com/ekonomija/srbija/23347/prodaja-stanova-samo-26-stanova-kupljeno-na-kredit-2022/news"],
+  "KURIR-FRN": ["M","Kurir — Stranci postaju vlasnici sve više nekretnina u Srbiji","https://biznis.kurir.rs/nekretnine/4372101/stranci-postaju-vlasnici-sve-vise-nekretnina-u-srbiji-najvise-ih-je-iz-rusije-ali-tu-su-i-makedonci-evo-sta-im-je-glavni-cilj"],
+  "TEL-6OF8":  ["M","Telegraf — „Od 8 stanova u Beogradu 6 kupe Rusi“ (07.2022)","https://biznis.telegraf.rs/nekretnine/3524807-otkrivamo-od-8-stanova-u-beogradu-6-kupe-rusi-neverovatan-skok-na-trzistu-traze-one-iznad-200000-za-kes"],
+  "KAM-RENT":  ["M","Kamatica — Koliko je dolazak Rusa podigao cene kirija (4zida)","https://www.kamatica.com/analiza/koliko-je-dolazak-rusa-podigao-cene-kirija/67669"],
+  "4ZIDA":     ["M","4zida — Pad cena kirija u Beogradu","https://www.4zida.rs/blog/pad-cena-kirija-u-beogradu/"],
+  "TEL-RENT":  ["M","Telegraf — Skok kirija u Beogradu: stan od 35 m² sa 230 na 400 evra","https://biznis.telegraf.rs/nekretnine/3506442-analizirali-smo-skok-cene-kirija-u-beogradu-stan-od-35-kvadrata-skocio-s-230-na-400-evra"],
+  "TBC":       ["M","Investor.ge — Tbilisi residential real estate market 2022 (TBC Capital)","https://www.investor.ge/2022/12/18/tbilisis-residential-real-estate-market-a-year-in-review/"],
+  "N1-AIRBNB": ["M","N1 — Airbnb i Booking stanovi u Beogradu","https://n1info.rs/biznis/airbnb-booking-stanovi-beograd/"],
+  "N1-BUILT":  ["M","N1 — RZS: u Srbiji izgrađeno 35.380 stanova","https://n1info.rs/vesti/rzs-u-srbiji-prosle-godine-izgradjeno-35380-stanova-nesto-manje-nego-2023/"],
+  "N1-YOUTH":  ["M","N1 — Subvencije za mlade: kredit za prvu nekretninu","https://n1info.rs/biznis/subvencije-za-mlade-kredit-prva-nekretnina/"],
+  "NE-CASH":   ["M","Nova ekonomija — Masovna kupovina stanova za keš ne alarmira institucije","https://novaekonomija.rs/price-i-analize/masovna-kupovina-stanova-za-kes-ne-alarmira-institucije"],
+  "021-ARM":   ["M","021.rs — Cena armature u Srbiji svaki dan sve veća (2022)","https://www.021.rs/story/Info/Biznis-i-ekonomija/300839/Cena-armature-u-Srbiji-svaki-dan-sve-veca-do-gradjevinskog-materijala-sve-teze-doci.html"],
+  "DANAS-MAT": ["M","Danas — Skuplji stanovi za bezbednjake: materijal poskupeo 40,8%","https://www.danas.rs/vesti/ekonomija/skuplji-stanovi-za-bezbednjake-u-zakonu-vise-nece-pisati-da-cena-kvadrata-ne-sme-da-premasi-500-evra/"],
+  "B92-WAGE":  ["M","B92 — RZS: prosečna plata u Srbiji, decembar 2025","https://www.b92.net/biz/srbija/vesti/210750/rzs-prosecna-plata-u-srbiji-decembar-2025/vest"],
+  "BGEN-EL":   ["M","Balkan Green Energy News — Struja u Srbiji poskupela 34,2%","https://balkangreenenergynews.com/rs/elektricna-energija-u-srbiji-od-prosle-jeseni-poskupela-342-odsto/"],
+  "NM-MARGIN": ["M","Novi magazin — Ograničenje marži u Srbiji i efekti za potrošače","https://novimagazin.rs/ekonomija/365552-ogranicenje-marzi-u-srbiji-pad-profita-u-trgovini-rezovi-u-lancima-i-ograniceni-efekti-za-potrosace"],
+  "INSIDER":   ["M","The Insider — Russian emigrants' incomes abroad","https://theins.press/en/economics/294913"],
+  "TANJUG-CAR":["M","Tanjug — Polovni automobili poskupeli za 24% u 2022","https://www.tanjug.rs/ekonomija/srbija/13749/polovni-automobili-poskupeli-za-24-odsto-u-2022-godini/vest"],
+  "BBG-DE":    ["M","Bloomberg — Tight supply chains trigger record German used-car prices (05.2022)","https://www.bloomberg.com/news/articles/2022-05-02/tight-supply-chains-are-triggering-record-german-used-car-prices"],
+  "AUTO1":     ["M","AUTO1 Group — used car price index launch","https://www.auto1-group.com/press/pressrelease/launch-of-the-auto1-group-price-index_58/"]
+};
+
+/* ---------- words ---------- */
+const COUNTRY = {
+  sr: {RS:"Srbija",ME:"Crna Gora",HR:"Hrvatska",BG:"Bugarska",HU:"Mađarska",RO:"Rumunija",MK:"S. Makedonija",CZ:"Češka",PL:"Poljska",SI:"Slovenija",SK:"Slovačka",AT:"Austrija",EU27:"EU-27"},
+  ru: {RS:"Сербия",ME:"Черногория",HR:"Хорватия",BG:"Болгария",HU:"Венгрия",RO:"Румыния",MK:"С. Македония",CZ:"Чехия",PL:"Польша",SI:"Словения",SK:"Словакия",AT:"Австрия",EU27:"ЕС-27"},
+  en: {RS:"Serbia",ME:"Montenegro",HR:"Croatia",BG:"Bulgaria",HU:"Hungary",RO:"Romania",MK:"N. Macedonia",CZ:"Czechia",PL:"Poland",SI:"Slovenia",SK:"Slovakia",AT:"Austria",EU27:"EU-27"}
+};
+const COICOP = {
+  sr: {CP011:"Hrana",CP045:"Struja, gas, grejanje",CP02:"Alkohol i duvan",CP07:"Prevoz",CP11:"Restorani i hoteli",CP041:"Kirija",CP09:"Rekreacija i kultura",CP06:"Zdravlje",CP05:"Nameštaj i domaćinstvo",CP13:"Lična nega",CP03:"Odeća i obuća",CP08:"Informacije i komunikacije"},
+  ru: {CP011:"Еда",CP045:"Электричество, газ, отопление",CP02:"Алкоголь и табак",CP07:"Транспорт",CP11:"Рестораны и гостиницы",CP041:"Аренда жилья",CP09:"Отдых и культура",CP06:"Здоровье",CP05:"Мебель и быт",CP13:"Уход за собой",CP03:"Одежда и обувь",CP08:"Связь и информация"},
+  en: {CP011:"Food",CP045:"Electricity, gas, heating",CP02:"Alcohol & tobacco",CP07:"Transport",CP11:"Restaurants & hotels",CP041:"Rent",CP09:"Recreation & culture",CP06:"Health",CP05:"Furnishings",CP13:"Personal care",CP03:"Clothing & footwear",CP08:"Information & communication"}
+};
+
+const T = {
+ru: {
+  htmlTitle: "Кто поднял цены в Сербии",
+  nav: {tldr:"Коротко", prices:"Все цены", food:"Еда", flats:"Квартиры", rent:"Аренда", migrants:"Русские", cars:"Машины", method:"Метод", sources:"Источники"},
+  eyebrow: "Сербия · 2019–2025 · официальная статистика",
+  h1: "Кто поднял цены в Сербии?",
+  verdict: "Не русские. Приезжие 2022 года <mark>подняли аренду — примерно на четверть её роста</mark>. Квартиры, еда и всё остальное подорожали бы почти так же и без них.",
+  period: "Период: декабрь 2019 → декабрь 2025 (квартиры: IV кв. 2019 → IV кв. 2025). Доли — вклад в рост, сумма 100%.",
+  more: "Подробнее →",
+  growth: "рост",
+  signalNote: "Жёлтым везде отмечен вклад мигрантов 2022 года.",
+  cards: {
+    prices: {name:"Все цены", basis:"индекс потребительских цен"},
+    food:   {name:"Еда", basis:"индекс цен на еду"},
+    flats:  {name:"Квартиры", basis:"индекс цен RGZ"},
+    rent:   {name:"Аренда", basis:"индекс аренды"}
+  },
+  pins: {war:"24.02.2022", mob:"21.09.2022"},
+  prices: {
+    h2: "Все цены: +45% за шесть лет",
+    figureSub: "XII 2019 → XII 2025",
+    lead: "Больше трети общего роста цен — еда. Ещё десятая часть — электричество и газ. Аренда весит в корзине 1,2% и дала меньше 2% роста, так что даже резкий скачок аренды в 2022 году почти не сдвинул общую инфляцию.",
+    chartTitle: "Сколько подорожала каждая категория",
+    chartSub: "Рост цен XII 2019 → XII 2025, %. В скобках — вес в корзине. Eurostat HICP, Сербия",
+    factors: [
+      {id:"prices-food", kind:"blue", share:39, name:"Еда", sum:"+59%, и это самая тяжёлая статья корзины — 30%",
+       ev:[["Вклад еды в рост: 29,8% веса × 58,9% роста ≈ 17,6 п.п. из 45.",["ES-HICP","ES-HICPW"]],
+           ["Разбор причин — в разделе «Еда» ниже.",[]]], link:"food"},
+      {id:"prices-energy", kind:"aqua", share:11, name:"Электричество, газ, отопление", sum:"+57%; тарифы подняты по программе МВФ",
+       ev:[["Электричество для домохозяйств с сентября 2022 по ноябрь 2023 подорожало на 34,2% — четырьмя шагами.",["BGEN-EL"]],
+           ["По разбору NBS, с августа 2021 по март 2023 еда и энергия вместе дали больше двух третей инфляции.",["NBS-IR"]]]},
+      {id:"prices-rent", kind:"amber", share:2, name:"Аренда жилья", sum:"+72%, но вес в корзине всего 1,2%",
+       ev:[["Даже если вся лишняя аренда 2022–2023 годов — это приезжие, их вклад в общий рост цен ≈ 0,15 п.п. из 45, то есть около 0,3%.",["ES-HICP","ES-HICPW"]],
+           ["Разбор — в разделе «Аренда».",[]]], link:"rent"},
+      {id:"prices-other", kind:"slate", share:48, name:"Всё остальное", sum:"алкоголь и табак, транспорт, рестораны, услуги",
+       ev:[["Алкоголь и табак +51% (акцизы) — 9% роста; транспорт +24% — 7%; рестораны и гостиницы +70% — 5%.",["ES-HICP"]],
+           ["Услуги и рестораны тянет рост зарплат: средняя чистая зарплата выросла вдвое, с 54 919 до ~109 400 динаров.",["B92-WAGE","NBS-IR"]],
+           ["Резко подорожавшие рестораны центра Белграда могли подогреть и приезжие, но отдельно это никто не измерял. Даже треть роста ресторанов дала бы меньше 1 п.п. общей инфляции.",[]]]}
+    ]
+  },
+  food: {
+    h2: "Еда: +59%, из них 70% — общеевропейская волна",
+    figureSub: "XII 2019 → XII 2025",
+    lead: "Еда в ЕС за те же шесть лет подорожала на 38%. Такую часть сербского роста объясняет общий для Европы шок: цены на зерно, энергию и удобрения после 24.02.2022. Остальное — местное: засуха, наценки, большая доля еды в корзине. Приезжие здесь не видны: соседи без них подорожали так же или сильнее.",
+    chartTitle: "Рост цен на еду у соседей",
+    chartSub: "XII 2019 → XII 2025, %. Eurostat HICP, «продукты питания и безалкогольные напитки»",
+    factors: [
+      {id:"food-europe", kind:"blue", share:70, name:"Общеевропейский рост цен", sum:"ЕС +38%; Венгрия +78%, Болгария +61%",
+       ev:[["Если бы еда в Сербии дорожала как в среднем по ЕС (+38,3%), это дало бы 70% сербского роста (в логарифмах).",["ES-HICP"]],
+           ["Всемирный банк: в шести странах Западных Балкан продовольственная инфляция 2022 года в среднем 20% — мировые цены, энергия, удобрения, запреты экспорта.",["WB-FOOD"]]]},
+      {id:"food-local", kind:"aqua", share:30, name:"Местные причины", sum:"засуха 2022, наценки, доля еды в корзине 30%",
+       ev:[["NBS: засуха 2022 года подняла цены на овощи почти на 30% за I кв. 2023; еда давала 38–50% всей годовой инфляции.",["NBS-IR"]],
+           ["Всемирный банк отмечает олигополию переработчиков и торговых сетей в регионе.",["WB-FOOD"]],
+           ["Указ о предельной наценке 20% с 1 сентября 2025 года сразу снизил цены на 1,6% за месяц — наценки действительно были частью роста.",["NM-MARGIN"]]]},
+      {id:"food-migrants", kind:"amber", share:0, name:"Мигранты 2022", sum:"≈ 0: не выделяются в данных",
+       ev:[["50–100 тыс. приезжих — около 1% населения; еда торгуется по всей стране и через границы.",["RFE-53K","BCBP"]],
+           ["Хорватия, Черногория и ЕС без русской волны — +47…+38%; Венгрия, Болгария, Румыния — сильнее Сербии.",["ES-HICP"]]]}
+    ]
+  },
+  flats: {
+    h2: "Квартиры: +81%, и рост начался до войны",
+    figureSub: "IV кв. 2019 → IV кв. 2025",
+    lead: "Цены квартир в Сербии удвоились с 2019 года, но ступеньки ни в феврале, ни в сентябре 2022 года нет: быстрее всего цены росли в конце 2021-го. Когда русских стало больше всего, в 2023 году, рост почти остановился, а число сделок в Белграде упало на 17–31%.",
+    chartTitle: "Белград, вторичное жильё, средняя цена сделки",
+    chartSub: "€/м², по кварталам. RGZ, квартальные отчёты (с 2025 года методика другая — не показана)",
+    chart2Title: "Соседи без русской волны росли так же",
+    chart2Sub: "Рост цен на жильё IV кв. 2019 → IV кв. 2025, %. Eurostat HPI; Сербия — индекс RGZ",
+    factors: [
+      {id:"flats-inflation", kind:"slate", share:62, name:"Инфляция и стройка", sum:"деньги подешевели на 45%, материалы — дороже",
+       ev:[["Потребительские цены +45% за тот же период — это 62% роста цен квартир (в логарифмах).",["ES-HICP"]],
+           ["2022 год: арматура +40–50%, цемент +20–30%; правительство признало подорожание материалов на 40,8%, снимая потолок 500 €/м² для жилья силовиков.",["021-ARM","DANAS-MAT"]]]},
+      {id:"flats-demand", kind:"blue", share:35, name:"Доходы, сбережения, кредит", sum:"зарплаты ×2, 80% покупок за наличные",
+       ev:[["Средняя чистая зарплата выросла на 99% (≈466 → 934 €). Цена м² к зарплате по стране не выросла.",["B92-WAGE","RGZ-IDX"]],
+           ["78–83% квартир покупают без кредита; сбережениям в Сербии некуда деться — реальные ставки по вкладам в 2022–2023 отрицательные, фондового рынка для населения нет.",["NE-CASH","RGZ-2023"]],
+           ["Кредит: доля покупок в ипотеку упала с 38% (I кв. 2021) до 21% (IV кв. 2022); ставка в евро выросла с 2,66% до 6,29% и остановила рост в 2023-м; субсидии молодым с 2024 года снова разогнали.",["BA-CREDIT","NBS-RATES","N1-YOUTH"]],
+           ["Переводы диаспоры: 3,6 → 5,0 млрд € в год.",["BA-REMIT"]],
+           ["Отмывание денег: недвижимость — сектор наивысшего риска в национальной оценке; долю «серых» денег не измерял никто.",["GITOC","NE-CASH"]],
+           ["Предложение: построено 26,7 тыс. квартир в 2022-м, 35,7 тыс. в 2023-м, 35,4 тыс. в 2024-м.",["N1-BUILT","NBS-FSR"]]]},
+      {id:"flats-migrants", kind:"amber", share:3, name:"Мигранты 2022", sum:"не больше 3% — верхняя оценка",
+       ev:[["83% русских живут в Белграде и Нови-Саде. Если бы они толкали цены, Белград обгонял бы остальную Сербию. Не обогнал: к концу 2023 года премия Белграда оказалась на 0,8% ниже тренда 2019–2021 годов.",["RGZ-2026","RFE-53K"]],
+           ["Нерезиденты — 2,9% покупателей в 2022 году и 4,8% в 2023-м, среди них много сербов из-за границы.",["KURIR-FRN"]],
+           ["Граждане РФ за 2023 год купили жильё примерно на 180 млн € при рынке квартир ~3,4 млрд € — не больше 5%.",["BA-180M","RGZ-2023"]],
+           ["Квартальный рост в 2022 году (+3,3…+5,5%) не выше, чем в IV кв. 2021 года (+5,3%). В 2023 году юг и восток Сербии, где русских почти нет, подорожали на 8,2%, Белград — на 5,8%.",["RGZ-REP","RGZ-Q4-23"]],
+           ["Популярное «6 из 8 квартир покупают русские» — мнение одного риелтора о доле среди иностранцев, а не среди всех покупателей.",["TEL-6OF8"]]]}
+    ]
+  },
+  rent: {
+    h2: "Аренда: здесь приезжие видны",
+    figureSub: "XII 2019 → XII 2025",
+    lead: "В 2022–2023 годах аренда в Сербии обгоняла инфляцию, а у соседей без русской волны отставала от неё. Эта разница — примерно 13% реальной аренды — и есть след приезжих. Скачки индекса пришлись ровно на апрель и октябрь 2022 года, после чего с весны 2023-го аренда пошла вниз.",
+    chartTitle: "Аренда за вычетом инфляции",
+    chartSub: "Индекс аренды, делённый на индекс цен своей страны, XII 2021 = 100. Eurostat HICP",
+    factors: [
+      {id:"rent-inflation", kind:"slate", share:69, name:"Общая инфляция", sum:"цены +45% — аренда за ними",
+       ev:[["Если бы аренда росла ровно как все цены, это дало бы 69% её роста (в логарифмах).",["ES-HICP"]]]},
+      {id:"rent-migrants", kind:"amber", share:23, name:"Мигранты 2022", sum:"≈ +13% реальной аренды в 2022–2023",
+       ev:[["Реальная аренда XII 2021 → XII 2023: Сербия +8,9%, Черногория +18,6%; Хорватия −6,4%, Болгария −3,2%, Венгрия −2,6%. Разница с контрольными странами ≈ 13% — это 23% роста аренды за шесть лет.",["ES-HICP"]],
+           ["Самые большие месячные скачки индекса аренды за всю историю: апрель 2022 (+3,7%), июль (+5,6%), октябрь 2022 (+7,4%) — после первой волны и после мобилизации.",["ES-HICP"]],
+           ["Белград, объявления, I → IV кв. 2022: однокомнатная 300 → 500 €, двухкомнатная 450 → 800 €, трёхкомнатная 600 → 1000 €. К середине 2023 года — минус 15–30% от пика.",["KAM-RENT","4ZIDA","TEL-RENT"]],
+           ["~53 тыс. граждан РФ с ВНЖ на конец 2024 года, 83% из них — в Белграде и Нови-Саде; семья релокантов зарабатывает в 4–5 раз больше средней сербской зарплаты.",["RFE-53K","INSIDER"]],
+           ["Так же было в Тбилиси: аренда в 2022 году +66…120%, цены покупки +17…28%, на мигрантов — 4% покупок.",["TBC"]]]},
+      {id:"rent-other", kind:"hatch", share:8, name:"Прочее", sum:"скачки 2024–2025 без связи с волнами",
+       ev:[["Реальная аренда снова прыгнула в мае 2024-го и в октябре 2025-го, когда новых волн не было. Причину данные не показывают.",["ES-HICP"]],
+           ["Краткосрочная аренда: около 10 тыс. квартир Белграда на Airbnb и Booking (2024).",["N1-AIRBNB"]]]}
+    ],
+    legendRS:"Сербия", legendME:"Черногория (тоже приняла русских)", legendCtrl:"Хорватия, Болгария, Венгрия"
+  },
+  migrants: {
+    h2: "Сколько русских и сколько у них денег",
+    lead: "Главная путаница — в цифре «сотни тысяч». Это въезды: каждый визаран считается заново. Осело на порядок меньше.",
+    facts: [["53 тыс.","граждан РФ с действующим ВНЖ на конец 2024 года — половина всех иностранцев в Сербии",["RFE-53K"]],
+            ["80–110 тыс.","оценка осевших (BCBP); 83% — Белград, 13% — Нови-Сад",["BCBP"]],
+            ["768 тыс.","въездов граждан РФ с 02.2022 по 07.2024 — это не люди, а пересечения границы",["BCBP"]],
+            ["+11 081","фирм и ИП с российскими учредителями с 24.02.2022 по 06.2024 (до войны было 1 017)",["NE-FIRMS"]],
+            ["272 млн €","переводов из России за 2024 год — 5,5% всех переводов в Сербию",["BIZ-RU"]],
+            ["1–2 млрд €","грубая оценка трат русских в год — 1,5–3% ВВП Сербии",["INSIDER","RFE-53K"]]],
+    gap: "Налоги, депозиты и траты по гражданству не публикуются. Переводы из России за 2022–2023 годы в открытых таблицах NBS не найдены."
+  },
+  cars: {
+    h2: "Проверка на машинах",
+    lead: "Подержанные машины в Сербии в 2022 году подорожали на 24% — почти как квартиры в том же году. Русские машины массово не покупали, и в подорожании их никто не винил: в Германии рост был 27%, по Европе — 25,7%. Причина — дефицит чипов и очереди на новые машины.",
+    ev: [["Сербия, 2022: подержанные машины +24%, продажи −15% (Polovni automobili).",["TANJUG-CAR"]],
+         ["Германия, апрель 2022: +27% за год.",["BBG-DE"]],
+         ["Европа, индекс AUTO1, июль 2022: +25,7%.",["AUTO1"]]]
+  },
+  method: {
+    h2: "Как посчитаны доли",
+    body: [
+      "Рост раскладывается в логарифмах: ln(1 + рост) = ln(1 + вклад 1) + ln(1 + вклад 2) + … Так доли складываются в 100% и не зависят от порядка.",
+      "<b>Инфляция</b> — индекс потребительских цен Сербии за тот же период (+45%).",
+      "<b>Аренда, мигранты</b> — разница реальной аренды Сербии и среднего по Хорватии, Болгарии и Венгрии за XII 2021 → XII 2023 (+8,9% против −4,1%). Всё, что аренда выросла сверх этого и сверх инфляции, отнесено в «прочее».",
+      "<b>Квартиры, мигранты</b> — верхняя оценка. Разница «Белград минус вся Сербия» к концу 2023 года меньше нуля, то есть точечная оценка — ноль. Потолок 3%: русские дали не больше 5% стоимости покупок, и даже если бы весь их спрос сразу ушёл в цену, это ≈ 2% уровня цен.",
+      "<b>Еда, Европа</b> — рост цен на еду в ЕС (+38,3%); остаток отнесён к местным причинам.",
+      "Это сопоставление рядов, а не эконометрическая модель. Причинного исследования влияния мигрантов на цены в Сербии нет ни у NBS, ни у экономистов."
+    ],
+    caveats: "Оговорки: индекс RGZ пересчитывается каждый квартал (цифры — из выпуска II кв. 2026); с 2025 года RGZ сменил фильтрацию средних цен по Белграду; в Хорватии методика аренды сменилась в 2025-м, поэтому график заканчивается 2024 годом."
+  },
+  sources: {h2:"Источники", lead:"P — первоисточник (RGZ, NBS, Eurostat, Всемирный банк), M — СМИ со ссылкой на данные.", back:"↑ назад"},
+  footer: "Данные собраны 13.09.2026. Цифры меняются при пересмотрах статистики — проверяйте по ссылкам."
+},
+
+sr: {
+  htmlTitle: "Ko je podigao cene u Srbiji",
+  nav: {tldr:"Ukratko", prices:"Sve cene", food:"Hrana", flats:"Stanovi", rent:"Kirije", migrants:"Rusi", cars:"Automobili", method:"Metod", sources:"Izvori"},
+  eyebrow: "Srbija · 2019–2025 · zvanična statistika",
+  h1: "Ko je podigao cene u Srbiji?",
+  verdict: "Nisu Rusi. Došljaci iz 2022. <mark>podigli su kirije — otprilike četvrtinu njihovog rasta</mark>. Stanovi, hrana i sve ostalo poskupeli bi skoro isto i bez njih.",
+  period: "Period: decembar 2019 → decembar 2025 (stanovi: IV kv. 2019 → IV kv. 2025). Udeli su doprinos rastu, zbir je 100%.",
+  more: "Detaljnije →",
+  growth: "rast",
+  signalNote: "Žutom je svuda označen doprinos migranata iz 2022.",
+  cards: {
+    prices: {name:"Sve cene", basis:"indeks potrošačkih cena"},
+    food:   {name:"Hrana", basis:"indeks cena hrane"},
+    flats:  {name:"Stanovi", basis:"indeks cena RGZ"},
+    rent:   {name:"Kirije", basis:"indeks kirija"}
+  },
+  pins: {war:"24.02.2022", mob:"21.09.2022"},
+  prices: {
+    h2: "Sve cene: +45% za šest godina",
+    figureSub: "XII 2019 → XII 2025",
+    lead: "Više od trećine ukupnog rasta cena je hrana. Još desetina — struja i gas. Kirija čini 1,2% potrošačke korpe i dala je manje od 2% rasta, pa ni nagli skok kirija 2022. skoro nije pomerio ukupnu inflaciju.",
+    chartTitle: "Koliko je poskupela svaka kategorija",
+    chartSub: "Rast cena XII 2019 → XII 2025, %. U zagradi — ponder u korpi. Eurostat HICP, Srbija",
+    factors: [
+      {id:"prices-food", kind:"blue", share:39, name:"Hrana", sum:"+59%, a to je najteža stavka korpe — 30%",
+       ev:[["Doprinos hrane: ponder 29,8% × rast 58,9% ≈ 17,6 p.p. od 45.",["ES-HICP","ES-HICPW"]],
+           ["Analiza uzroka — u odeljku „Hrana“ ispod.",[]]], link:"food"},
+      {id:"prices-energy", kind:"aqua", share:11, name:"Struja, gas, grejanje", sum:"+57%; tarife podignute po programu MMF-a",
+       ev:[["Struja za domaćinstva je od septembra 2022. do novembra 2023. poskupela 34,2% — u četiri koraka.",["BGEN-EL"]],
+           ["Prema NBS, od avgusta 2021. do marta 2023. hrana i energija zajedno dale su više od dve trećine inflacije.",["NBS-IR"]]]},
+      {id:"prices-rent", kind:"amber", share:2, name:"Kirija", sum:"+72%, ali ponder u korpi je samo 1,2%",
+       ev:[["Čak i da je sav višak kirija 2022–2023. zbog došljaka, njihov doprinos ukupnom rastu cena ≈ 0,15 p.p. od 45, oko 0,3%.",["ES-HICP","ES-HICPW"]],
+           ["Analiza — u odeljku „Kirije“.",[]]], link:"rent"},
+      {id:"prices-other", kind:"slate", share:48, name:"Sve ostalo", sum:"alkohol i duvan, prevoz, restorani, usluge",
+       ev:[["Alkohol i duvan +51% (akcize) — 9% rasta; prevoz +24% — 7%; restorani i hoteli +70% — 5%.",["ES-HICP"]],
+           ["Usluge i restorane vuče rast plata: prosečna neto zarada se udvostručila, sa 54.919 na ~109.400 dinara.",["B92-WAGE","NBS-IR"]],
+           ["Skupe restorane u centru Beograda mogli su dodatno da podgreju i došljaci, ali to niko nije posebno merio. Čak i trećina rasta restorana dala bi manje od 1 p.p. ukupne inflacije.",[]]]}
+    ]
+  },
+  food: {
+    h2: "Hrana: +59%, od toga 70% evropski talas",
+    figureSub: "XII 2019 → XII 2025",
+    lead: "Hrana u EU je za istih šest godina poskupela 38%. Toliki deo srpskog rasta objašnjava šok zajednički za celu Evropu: žito, energija i đubrivo posle 24.02.2022. Ostatak je domaći: suša, marže, veliki udeo hrane u korpi. Došljaci se ovde ne vide: susedi bez njih poskupeli su isto ili više.",
+    chartTitle: "Rast cena hrane kod suseda",
+    chartSub: "XII 2019 → XII 2025, %. Eurostat HICP, „hrana i bezalkoholna pića“",
+    factors: [
+      {id:"food-europe", kind:"blue", share:70, name:"Evropski rast cena", sum:"EU +38%; Mađarska +78%, Bugarska +61%",
+       ev:[["Da je hrana u Srbiji rasla kao prosek EU (+38,3%), to bi bilo 70% srpskog rasta (u logaritmima).",["ES-HICP"]],
+           ["Svetska banka: u šest zemalja Zapadnog Balkana inflacija hrane 2022. u proseku 20% — svetske cene, energija, đubrivo, zabrane izvoza.",["WB-FOOD"]]]},
+      {id:"food-local", kind:"aqua", share:30, name:"Domaći uzroci", sum:"suša 2022, marže, udeo hrane u korpi 30%",
+       ev:[["NBS: suša 2022. podigla je cene povrća skoro 30% u I kv. 2023; hrana je davala 38–50% godišnje inflacije.",["NBS-IR"]],
+           ["Svetska banka ukazuje na oligopol prerađivača i trgovinskih lanaca u regionu.",["WB-FOOD"]],
+           ["Uredba o ograničenju marže na 20% od 1. septembra 2025. odmah je spustila cene 1,6% za mesec — marže su zaista bile deo rasta.",["NM-MARGIN"]]]},
+      {id:"food-migrants", kind:"amber", share:0, name:"Migranti 2022", sum:"≈ 0: ne vide se u podacima",
+       ev:[["50–100 hiljada došljaka — oko 1% stanovništva; hranom se trguje u celoj zemlji i preko granica.",["RFE-53K","BCBP"]],
+           ["Hrvatska, Crna Gora i EU bez ruskog talasa — +47…+38%; Mađarska, Bugarska, Rumunija — više od Srbije.",["ES-HICP"]]]}
+    ]
+  },
+  flats: {
+    h2: "Stanovi: +81%, a rast je počeo pre rata",
+    figureSub: "IV kv. 2019 → IV kv. 2025",
+    lead: "Cene stanova u Srbiji su se od 2019. udvostručile, ali skoka nema ni u februaru ni u septembru 2022: najbrže su rasle krajem 2021. Kada je Rusa bilo najviše, 2023, rast se skoro zaustavio, a broj kupoprodaja u Beogradu pao je 17–31%.",
+    chartTitle: "Beograd, stari stanovi, prosečna cena kupoprodaje",
+    chartSub: "€/m², po kvartalima. RGZ, kvartalni izveštaji (od 2025. druga metodologija — nije prikazano)",
+    chart2Title: "Susedi bez ruskog talasa rasli su isto",
+    chart2Sub: "Rast cena stanova IV kv. 2019 → IV kv. 2025, %. Eurostat HPI; Srbija — indeks RGZ",
+    factors: [
+      {id:"flats-inflation", kind:"slate", share:62, name:"Inflacija i gradnja", sum:"novac je izgubio 45%, materijal skuplji",
+       ev:[["Potrošačke cene +45% u istom periodu — to je 62% rasta cena stanova (u logaritmima).",["ES-HICP"]],
+           ["2022: armatura +40–50%, cement +20–30%; država je priznala poskupljenje materijala od 40,8% kada je ukinula plafon od 500 €/m² za stanove za pripadnike snaga bezbednosti.",["021-ARM","DANAS-MAT"]]]},
+      {id:"flats-demand", kind:"blue", share:35, name:"Plate, štednja, krediti", sum:"plate ×2, 80% kupovina za keš",
+       ev:[["Prosečna neto zarada porasla je 99% (≈466 → 934 €). Cena m² u odnosu na platu na nivou zemlje nije porasla.",["B92-WAGE","RGZ-IDX"]],
+           ["78–83% stanova kupuje se bez kredita; štednja nema kuda — realne kamate na depozite 2022–2023. bile su negativne, berze za građane nema.",["NE-CASH","RGZ-2023"]],
+           ["Krediti: udeo kupovina na kredit pao je sa 38% (I kv. 2021) na 21% (IV kv. 2022); kamata u evrima porasla je sa 2,66% na 6,29% i zaustavila rast 2023; subvencije za mlade od 2024. ponovo su ga ubrzale.",["BA-CREDIT","NBS-RATES","N1-YOUTH"]],
+           ["Doznake dijaspore: 3,6 → 5,0 milijardi € godišnje.",["BA-REMIT"]],
+           ["Pranje novca: nekretnine su sektor najvećeg rizika u nacionalnoj proceni; udeo „sivog“ novca niko nije izmerio.",["GITOC","NE-CASH"]],
+           ["Ponuda: izgrađeno 26,7 hiljada stanova 2022, 35,7 hiljada 2023, 35,4 hiljade 2024.",["N1-BUILT","NBS-FSR"]]]},
+      {id:"flats-migrants", kind:"amber", share:3, name:"Migranti 2022", sum:"najviše 3% — gornja procena",
+       ev:[["83% Rusa živi u Beogradu i Novom Sadu. Da su oni gurali cene, Beograd bi pretekao ostatak Srbije. Nije: krajem 2023. beogradska premija bila je 0,8% ispod trenda 2019–2021.",["RGZ-2026","RFE-53K"]],
+           ["Nerezidenti — 2,9% kupaca 2022. i 4,8% 2023, među njima mnogo Srba iz inostranstva.",["KURIR-FRN"]],
+           ["Državljani Rusije su 2023. kupili stanove za oko 180 miliona € na tržištu stanova od ~3,4 milijarde € — najviše 5%.",["BA-180M","RGZ-2023"]],
+           ["Kvartalni rast 2022. (+3,3…+5,5%) nije veći nego u IV kv. 2021. (+5,3%). U 2023. jug i istok Srbije, gde Rusa skoro nema, poskupeli su 8,2%, Beograd 5,8%.",["RGZ-REP","RGZ-Q4-23"]],
+           ["Popularno „od 8 stanova 6 kupe Rusi“ je mišljenje jednog agenta o udelu među strancima, ne među svim kupcima.",["TEL-6OF8"]]]}
+    ]
+  },
+  rent: {
+    h2: "Kirije: ovde se došljaci vide",
+    figureSub: "XII 2019 → XII 2025",
+    lead: "U 2022–2023. kirije u Srbiji su rasle brže od inflacije, a kod suseda bez ruskog talasa sporije. Ta razlika — oko 13% realne kirije — trag je došljaka. Skokovi indeksa pali su tačno u april i oktobar 2022, a od proleća 2023. kirije su padale.",
+    chartTitle: "Kirije bez inflacije",
+    chartSub: "Indeks kirija podeljen indeksom cena iste zemlje, XII 2021 = 100. Eurostat HICP",
+    factors: [
+      {id:"rent-inflation", kind:"slate", share:69, name:"Opšta inflacija", sum:"cene +45% — kirije za njima",
+       ev:[["Da su kirije rasle tačno kao sve cene, to bi bilo 69% njihovog rasta (u logaritmima).",["ES-HICP"]]]},
+      {id:"rent-migrants", kind:"amber", share:23, name:"Migranti 2022", sum:"≈ +13% realne kirije 2022–2023",
+       ev:[["Realna kirija XII 2021 → XII 2023: Srbija +8,9%, Crna Gora +18,6%; Hrvatska −6,4%, Bugarska −3,2%, Mađarska −2,6%. Razlika prema kontrolnim zemljama ≈ 13% — to je 23% rasta kirija za šest godina.",["ES-HICP"]],
+           ["Najveći mesečni skokovi indeksa kirija u celoj seriji: april 2022. (+3,7%), jul (+5,6%), oktobar 2022. (+7,4%) — posle prvog talasa i posle mobilizacije.",["ES-HICP"]],
+           ["Beograd, oglasi, I → IV kv. 2022: jednosoban 300 → 500 €, dvosoban 450 → 800 €, trosoban 600 → 1000 €. Do sredine 2023. — 15–30% ispod vrha.",["KAM-RENT","4ZIDA","TEL-RENT"]],
+           ["~53 hiljade državljana Rusije sa boravkom krajem 2024, 83% u Beogradu i Novom Sadu; porodica relokanata zarađuje 4–5 puta više od prosečne srpske plate.",["RFE-53K","INSIDER"]],
+           ["Isto je bilo u Tbilisiju: kirije 2022. +66…120%, cene kupovine +17…28%, na migrante 4% kupovina.",["TBC"]]]},
+      {id:"rent-other", kind:"hatch", share:8, name:"Ostalo", sum:"skokovi 2024–2025 bez veze sa talasima",
+       ev:[["Realna kirija ponovo je skočila u maju 2024. i oktobru 2025, kada novih talasa nije bilo. Podaci ne pokazuju uzrok.",["ES-HICP"]],
+           ["Kratkoročni najam: oko 10 hiljada beogradskih stanova na Airbnb i Booking (2024).",["N1-AIRBNB"]]]}
+    ],
+    legendRS:"Srbija", legendME:"Crna Gora (takođe primila Ruse)", legendCtrl:"Hrvatska, Bugarska, Mađarska"
+  },
+  migrants: {
+    h2: "Koliko je Rusa i koliko imaju novca",
+    lead: "Glavna zabuna je u broju „stotine hiljada“. To su ulasci: svaki vizaran se broji ponovo. Ostalo ih je za red veličine manje.",
+    facts: [["53 hilj.","državljana Rusije sa važećim boravkom krajem 2024 — polovina svih stranaca u Srbiji",["RFE-53K"]],
+            ["80–110 hilj.","procena onih koji su ostali (BCBP); 83% Beograd, 13% Novi Sad",["BCBP"]],
+            ["768 hilj.","ulazaka državljana Rusije od 02.2022. do 07.2024 — to su prelasci granice, ne ljudi",["BCBP"]],
+            ["+11.081","firmi i preduzetnika sa ruskim osnivačima od 24.02.2022. do 06.2024. (pre rata 1.017)",["NE-FIRMS"]],
+            ["272 mil. €","doznaka iz Rusije u 2024 — 5,5% svih doznaka u Srbiju",["BIZ-RU"]],
+            ["1–2 mlrd. €","gruba procena godišnje potrošnje Rusa — 1,5–3% BDP-a Srbije",["INSIDER","RFE-53K"]]],
+    gap: "Porezi, depoziti i potrošnja po državljanstvu se ne objavljuju. Doznake iz Rusije za 2022–2023. nisu nađene u otvorenim tabelama NBS."
+  },
+  cars: {
+    h2: "Provera na automobilima",
+    lead: "Polovni automobili u Srbiji su 2022. poskupeli 24% — skoro kao stanovi te godine. Rusi nisu masovno kupovali automobile i niko ih nije krivio: u Nemačkoj je rast bio 27%, u Evropi 25,7%. Uzrok je nestašica čipova i čekanje na nova vozila.",
+    ev: [["Srbija, 2022: polovni automobili +24%, prodaja −15% (Polovni automobili).",["TANJUG-CAR"]],
+         ["Nemačka, april 2022: +27% za godinu.",["BBG-DE"]],
+         ["Evropa, indeks AUTO1, jul 2022: +25,7%.",["AUTO1"]]]
+  },
+  method: {
+    h2: "Kako su izračunati udeli",
+    body: [
+      "Rast se razlaže u logaritmima: ln(1 + rast) = ln(1 + doprinos 1) + ln(1 + doprinos 2) + … Tako se udeli sabiraju u 100% i ne zavise od redosleda.",
+      "<b>Inflacija</b> — indeks potrošačkih cena Srbije za isti period (+45%).",
+      "<b>Kirije, migranti</b> — razlika realne kirije u Srbiji i proseka Hrvatske, Bugarske i Mađarske za XII 2021 → XII 2023 (+8,9% prema −4,1%). Sve što su kirije porasle preko toga i preko inflacije svrstano je u „ostalo“.",
+      "<b>Stanovi, migranti</b> — gornja procena. Razlika „Beograd minus cela Srbija“ krajem 2023. manja je od nule, pa je tačkasta procena nula. Plafon 3%: Rusi su činili najviše 5% vrednosti kupovina, i čak da je sva njihova tražnja odmah prešla u cenu, to je ≈ 2% nivoa cena.",
+      "<b>Hrana, Evropa</b> — rast cena hrane u EU (+38,3%); ostatak pripada domaćim uzrocima.",
+      "Ovo je poređenje serija, a ne ekonometrijski model. Uzročnu studiju uticaja migranata na cene u Srbiji nemaju ni NBS ni ekonomisti."
+    ],
+    caveats: "Napomene: indeks RGZ se preračunava svakog kvartala (brojke iz izdanja za II kv. 2026); od 2025. RGZ je promenio filtriranje prosečnih cena za Beograd; Hrvatska je 2025. promenila metodologiju kirija, pa grafikon završava 2024. godinom."
+  },
+  sources: {h2:"Izvori", lead:"P — primarni izvor (RGZ, NBS, Eurostat, Svetska banka), M — mediji koji se pozivaju na podatke.", back:"↑ nazad"},
+  footer: "Podaci prikupljeni 13.09.2026. Brojke se menjaju sa revizijama statistike — proverite preko linkova."
+},
+
+en: {
+  htmlTitle: "Who Raised Prices in Serbia",
+  nav: {tldr:"TL;DR", prices:"All prices", food:"Food", flats:"Flats", rent:"Rent", migrants:"Russians", cars:"Cars", method:"Method", sources:"Sources"},
+  eyebrow: "Serbia · 2019–2025 · official statistics",
+  h1: "Who raised prices in Serbia?",
+  verdict: "Not the Russians. The 2022 newcomers <mark>pushed up rents — about a quarter of rent growth</mark>. Flats, food and everything else would have cost almost as much without them.",
+  period: "Period: December 2019 → December 2025 (flats: Q4 2019 → Q4 2025). Shares are contributions to growth and add up to 100%.",
+  more: "Details →",
+  growth: "growth",
+  signalNote: "Amber marks the contribution of the 2022 migrants everywhere.",
+  cards: {
+    prices: {name:"All prices", basis:"consumer price index"},
+    food:   {name:"Food", basis:"food price index"},
+    flats:  {name:"Flats", basis:"RGZ price index"},
+    rent:   {name:"Rent", basis:"rent index"}
+  },
+  pins: {war:"24 Feb 2022", mob:"21 Sep 2022"},
+  prices: {
+    h2: "All prices: +45% in six years",
+    figureSub: "Dec 2019 → Dec 2025",
+    lead: "More than a third of all price growth is food. Another tenth is electricity and gas. Rent is 1.2% of the consumer basket and gave less than 2% of growth, so even the sharp rent spike of 2022 barely moved overall inflation.",
+    chartTitle: "How much each category went up",
+    chartSub: "Price growth Dec 2019 → Dec 2025, %. Basket weight in brackets. Eurostat HICP, Serbia",
+    factors: [
+      {id:"prices-food", kind:"blue", share:39, name:"Food", sum:"+59%, and the heaviest item in the basket — 30%",
+       ev:[["Food's contribution: 29.8% weight × 58.9% growth ≈ 17.6 pp out of 45.",["ES-HICP","ES-HICPW"]],
+           ["Causes — in the Food section below.",[]]], link:"food"},
+      {id:"prices-energy", kind:"aqua", share:11, name:"Electricity, gas, heating", sum:"+57%; tariffs raised under the IMF programme",
+       ev:[["Household electricity rose 34.2% between September 2022 and November 2023, in four steps.",["BGEN-EL"]],
+           ["According to the NBS, food and energy together made up more than two thirds of inflation from August 2021 to March 2023.",["NBS-IR"]]]},
+      {id:"prices-rent", kind:"amber", share:2, name:"Rent", sum:"+72%, but only 1.2% of the basket",
+       ev:[["Even if all excess rent growth in 2022–2023 were due to newcomers, their contribution to overall inflation is ≈ 0.15 pp out of 45, about 0.3%.",["ES-HICP","ES-HICPW"]],
+           ["Details — in the Rent section.",[]]], link:"rent"},
+      {id:"prices-other", kind:"slate", share:48, name:"Everything else", sum:"alcohol & tobacco, transport, restaurants, services",
+       ev:[["Alcohol & tobacco +51% (excise) — 9% of growth; transport +24% — 7%; restaurants & hotels +70% — 5%.",["ES-HICP"]],
+           ["Services and restaurants follow wages: the average net wage doubled, from 54,919 to ~109,400 dinars.",["B92-WAGE","NBS-IR"]],
+           ["Newcomers may have added to pricier restaurants in central Belgrade, but nobody measured it. Even a third of restaurant growth would be under 1 pp of overall inflation.",[]]]}
+    ]
+  },
+  food: {
+    h2: "Food: +59%, 70% of it a Europe-wide wave",
+    figureSub: "Dec 2019 → Dec 2025",
+    lead: "Food in the EU went up 38% over the same six years. That share of Serbia's growth is a shock common to all of Europe: grain, energy and fertiliser after 24 February 2022. The rest is local: drought, retail margins, a large food share in the basket. Newcomers don't show up here: neighbours without them saw the same or more.",
+    chartTitle: "Food price growth in the region",
+    chartSub: "Dec 2019 → Dec 2025, %. Eurostat HICP, food and non-alcoholic beverages",
+    factors: [
+      {id:"food-europe", kind:"blue", share:70, name:"Europe-wide price rise", sum:"EU +38%; Hungary +78%, Bulgaria +61%",
+       ev:[["Had food in Serbia risen like the EU average (+38.3%), that would be 70% of Serbia's growth (in logs).",["ES-HICP"]],
+           ["World Bank: food inflation in the six Western Balkan economies averaged 20% in 2022 — world prices, energy, fertiliser, export bans.",["WB-FOOD"]]]},
+      {id:"food-local", kind:"aqua", share:30, name:"Local causes", sum:"2022 drought, margins, food is 30% of the basket",
+       ev:[["NBS: the 2022 drought pushed vegetable prices up almost 30% in Q1 2023; food made up 38–50% of annual inflation.",["NBS-IR"]],
+           ["The World Bank points to an oligopoly of processors and retail chains in the region.",["WB-FOOD"]],
+           ["The 20% margin cap from 1 September 2025 cut prices 1.6% in a month — margins really were part of the rise.",["NM-MARGIN"]]]},
+      {id:"food-migrants", kind:"amber", share:0, name:"2022 migrants", sum:"≈ 0: not visible in the data",
+       ev:[["50–100 thousand newcomers are about 1% of the population; food is traded nationwide and across borders.",["RFE-53K","BCBP"]],
+           ["Croatia, Montenegro and the EU without a Russian wave: +47…+38%; Hungary, Bulgaria, Romania: more than Serbia.",["ES-HICP"]]]}
+    ]
+  },
+  flats: {
+    h2: "Flats: +81%, and it started before the war",
+    figureSub: "Q4 2019 → Q4 2025",
+    lead: "Flat prices in Serbia have doubled since 2019, yet there is no step in February or September 2022: prices rose fastest at the end of 2021. When Russians were most numerous, in 2023, growth nearly stopped and Belgrade transactions fell 17–31%.",
+    chartTitle: "Belgrade, resale flats, average transaction price",
+    chartSub: "€/m², quarterly. RGZ quarterly reports (different method from 2025 — not shown)",
+    chart2Title: "Neighbours without a Russian wave rose just as much",
+    chart2Sub: "House price growth Q4 2019 → Q4 2025, %. Eurostat HPI; Serbia — RGZ index",
+    factors: [
+      {id:"flats-inflation", kind:"slate", share:62, name:"Inflation and construction", sum:"money lost 45%, materials got dearer",
+       ev:[["Consumer prices +45% over the same period — 62% of flat price growth (in logs).",["ES-HICP"]],
+           ["2022: rebar +40–50%, cement +20–30%; the government acknowledged a 40.8% rise in materials when it lifted the €500/m² cap on flats for security forces.",["021-ARM","DANAS-MAT"]]]},
+      {id:"flats-demand", kind:"blue", share:35, name:"Wages, savings, credit", sum:"wages ×2, 80% of purchases in cash",
+       ev:[["The average net wage rose 99% (≈€466 → €934). Price per m² relative to wages did not rise nationwide.",["B92-WAGE","RGZ-IDX"]],
+           ["78–83% of flats are bought without a mortgage; savings have nowhere to go — real deposit rates were negative in 2022–2023 and there is no retail stock market.",["NE-CASH","RGZ-2023"]],
+           ["Credit: mortgage share fell from 38% (Q1 2021) to 21% (Q4 2022); EUR rates rose from 2.66% to 6.29% and stalled growth in 2023; youth subsidies from 2024 revived it.",["BA-CREDIT","NBS-RATES","N1-YOUTH"]],
+           ["Diaspora remittances: €3.6 → €5.0 billion a year.",["BA-REMIT"]],
+           ["Money laundering: real estate is the highest-risk sector in the national assessment; nobody has measured the share of grey money.",["GITOC","NE-CASH"]],
+           ["Supply: 26.7 thousand flats completed in 2022, 35.7 thousand in 2023, 35.4 thousand in 2024.",["N1-BUILT","NBS-FSR"]]]},
+      {id:"flats-migrants", kind:"amber", share:3, name:"2022 migrants", sum:"at most 3% — an upper bound",
+       ev:[["83% of Russians live in Belgrade and Novi Sad. If they pushed prices, Belgrade would outpace the rest of Serbia. It didn't: by end-2023 Belgrade's premium was 0.8% below its 2019–2021 trend.",["RGZ-2026","RFE-53K"]],
+           ["Non-residents were 2.9% of buyers in 2022 and 4.8% in 2023, many of them Serbs living abroad.",["KURIR-FRN"]],
+           ["Russian citizens bought about €180 million of housing in 2023, in a ~€3.4 billion flat market — 5% at most.",["BA-180M","RGZ-2023"]],
+           ["Quarterly growth in 2022 (+3.3…+5.5%) was no higher than in Q4 2021 (+5.3%). In 2023 southern and eastern Serbia, with almost no Russians, rose 8.2%; Belgrade 5.8%.",["RGZ-REP","RGZ-Q4-23"]],
+           ["The popular “Russians buy 6 of 8 flats” is one agent's view of the share among foreigners, not among all buyers.",["TEL-6OF8"]]]}
+    ]
+  },
+  rent: {
+    h2: "Rent: here the newcomers show",
+    figureSub: "Dec 2019 → Dec 2025",
+    lead: "In 2022–2023 rents in Serbia outran inflation, while in neighbours without a Russian wave they lagged it. That gap — about 13% in real rent — is the newcomers' footprint. The index jumped exactly in April and October 2022, and rents fell from spring 2023.",
+    chartTitle: "Rent after inflation",
+    chartSub: "Rent index divided by the country's own price index, Dec 2021 = 100. Eurostat HICP",
+    factors: [
+      {id:"rent-inflation", kind:"slate", share:69, name:"General inflation", sum:"prices +45% — rents follow",
+       ev:[["Had rents risen exactly like all prices, that would be 69% of their growth (in logs).",["ES-HICP"]]]},
+      {id:"rent-migrants", kind:"amber", share:23, name:"2022 migrants", sum:"≈ +13% real rent in 2022–2023",
+       ev:[["Real rent Dec 2021 → Dec 2023: Serbia +8.9%, Montenegro +18.6%; Croatia −6.4%, Bulgaria −3.2%, Hungary −2.6%. The gap to the control countries, ≈ 13%, is 23% of six-year rent growth.",["ES-HICP"]],
+           ["The largest monthly jumps in the rent index on record: April 2022 (+3.7%), July (+5.6%), October 2022 (+7.4%) — after the first wave and after mobilisation.",["ES-HICP"]],
+           ["Belgrade listings, Q1 → Q4 2022: one-bedroom €300 → €500, two-bedroom €450 → €800, three-bedroom €600 → €1,000. By mid-2023: 15–30% below the peak.",["KAM-RENT","4ZIDA","TEL-RENT"]],
+           ["~53 thousand Russian citizens held residence permits at end-2024, 83% in Belgrade and Novi Sad; a relocated family earns 4–5 times the average Serbian wage.",["RFE-53K","INSIDER"]],
+           ["Tbilisi saw the same: rents +66…120% in 2022, purchase prices +17…28%, migrants 4% of purchases.",["TBC"]]]},
+      {id:"rent-other", kind:"hatch", share:8, name:"Other", sum:"2024–2025 jumps unrelated to the waves",
+       ev:[["Real rent jumped again in May 2024 and October 2025, with no new waves. The data don't show why.",["ES-HICP"]],
+           ["Short-term letting: about 10 thousand Belgrade flats on Airbnb and Booking (2024).",["N1-AIRBNB"]]]}
+    ],
+    legendRS:"Serbia", legendME:"Montenegro (also took in Russians)", legendCtrl:"Croatia, Bulgaria, Hungary"
+  },
+  migrants: {
+    h2: "How many Russians, and how much money",
+    lead: "The main confusion is the “hundreds of thousands” figure. Those are entries: every visa run counts again. An order of magnitude fewer people stayed.",
+    facts: [["53k","Russian citizens with a valid residence permit at end-2024 — half of all foreigners in Serbia",["RFE-53K"]],
+            ["80–110k","estimated to have settled (BCBP); 83% Belgrade, 13% Novi Sad",["BCBP"]],
+            ["768k","entries by Russian citizens Feb 2022 – Jul 2024 — border crossings, not people",["BCBP"]],
+            ["+11,081","companies and sole traders with Russian founders, 24 Feb 2022 – Jun 2024 (1,017 before the war)",["NE-FIRMS"]],
+            ["€272m","remittances from Russia in 2024 — 5.5% of all remittances to Serbia",["BIZ-RU"]],
+            ["€1–2bn","rough estimate of Russians' annual spending — 1.5–3% of Serbia's GDP",["INSIDER","RFE-53K"]]],
+    gap: "Taxes, deposits and spending by citizenship are not published. Remittances from Russia for 2022–2023 were not found in open NBS tables."
+  },
+  cars: {
+    h2: "The car test",
+    lead: "Used cars in Serbia went up 24% in 2022 — almost as much as flats that year. Russians did not buy cars en masse and nobody blamed them: Germany saw +27%, Europe +25.7%. The cause was the chip shortage and waiting lists for new cars.",
+    ev: [["Serbia, 2022: used cars +24%, sales −15% (Polovni automobili).",["TANJUG-CAR"]],
+         ["Germany, April 2022: +27% year on year.",["BBG-DE"]],
+         ["Europe, AUTO1 index, July 2022: +25.7%.",["AUTO1"]]]
+  },
+  method: {
+    h2: "How the shares were computed",
+    body: [
+      "Growth is decomposed in logs: ln(1 + growth) = ln(1 + contribution 1) + ln(1 + contribution 2) + … so shares add up to 100% regardless of order.",
+      "<b>Inflation</b> — Serbia's consumer price index over the same period (+45%).",
+      "<b>Rent, migrants</b> — the gap between Serbia's real rent and the average of Croatia, Bulgaria and Hungary, Dec 2021 → Dec 2023 (+8.9% vs −4.1%). Anything rents rose beyond that and beyond inflation is “other”.",
+      "<b>Flats, migrants</b> — an upper bound. The “Belgrade minus all Serbia” gap at end-2023 is below zero, so the point estimate is zero. The 3% ceiling: Russians were at most 5% of purchase value, and even if all their demand went straight into price, that is ≈ 2% of the price level.",
+      "<b>Food, Europe</b> — EU food price growth (+38.3%); the remainder is attributed to local causes.",
+      "This is a comparison of series, not an econometric model. Neither the NBS nor economists have published a causal study of migrants' effect on Serbian prices."
+    ],
+    caveats: "Caveats: the RGZ index is revised every quarter (figures from the Q2 2026 release); from 2025 RGZ changed how it filters Belgrade average prices; Croatia changed its rent methodology in 2025, so the chart ends in 2024."
+  },
+  sources: {h2:"Sources", lead:"P — primary source (RGZ, NBS, Eurostat, World Bank), M — media citing data.", back:"↑ back"},
+  footer: "Data collected 13 Sep 2026. Figures change with statistical revisions — check the links."
+}
+};
+
+/* ---------- helpers ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const NS = "http://www.w3.org/2000/svg";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fill = k => k === "hatch" ? "url(#hatch)" : `var(--s-${k})`;
+const swatch = k => k === "hatch"
+  ? `<span class="sw" style="background:repeating-linear-gradient(45deg,var(--s-hatch) 0 3px,var(--s-slate) 3px 5px)"></span>`
+  : `<span class="sw" style="background:var(--s-${k})"></span>`;
+let LANG = "sr";
+const fmt = (n, d = 0) => n.toLocaleString(LANG === "sr" ? "sr-Latn-RS" : LANG === "ru" ? "ru-RU" : "en-GB", {minimumFractionDigits: d, maximumFractionDigits: d});
+const pct = s => (s === 0 ? "≈0" : (s <= 3 && s > 0 && s !== 2 ? "≤" : "") + s) + "%";
+const cites = ids => ids.map(id => `<a class="cite" href="#src-${id}" data-src="${id}">${id}</a>`).join("");
+
+/* ---------- donut ---------- */
+function donut(topic, total) {
+  const f = T[LANG][topic].factors;
+  const r = 58, ri = 38, cx = 66, cy = 66;
+  let a0 = -Math.PI / 2;
+  const sum = f.reduce((s, x) => s + Math.max(x.share, 0), 0);
+  const paths = f.filter(x => x.share > 0).map(x => {
+    const ang = x.share / sum * Math.PI * 2;
+    const gap = 0.025;
+    const s = a0 + gap / 2, e = a0 + ang - gap / 2;
+    a0 += ang;
+    const large = e - s > Math.PI ? 1 : 0;
+    const p = (rad, t) => `${cx + rad * Math.cos(t)} ${cy + rad * Math.sin(t)}`;
+    const d = `M ${p(r, s)} A ${r} ${r} 0 ${large} 1 ${p(r, e)} L ${p(ri, e)} A ${ri} ${ri} 0 ${large} 0 ${p(ri, s)} Z`;
+    return `<path d="${d}" fill="${fill(x.kind)}" tabindex="0" role="link" data-go="${x.id}" aria-label="${esc(x.name)} ${pct(x.share)}"><title>${esc(x.name)} — ${pct(x.share)}</title></path>`;
+  }).join("");
+  return `<svg class="donut" viewBox="0 0 132 132" role="img" aria-label="${esc(T[LANG].cards[topic].name)} +${total}%">
+    ${paths}
+    <text class="big" x="${cx}" y="${cy + 4}" text-anchor="middle">+${total}%</text>
+    <text class="small" x="${cx}" y="${cy + 20}" text-anchor="middle">${esc(T[LANG].growth)}</text>
+  </svg>`;
+}
+
+/* ---------- line chart ---------- */
+function lineChart(el, {labels, series, yMin, yMax, yStep, pins, fmtY, xTick}) {
+  const W = 880, H = 320, m = {l: 48, r: 16, t: 26, b: 30};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const x = i => m.l + i / (labels.length - 1) * iw;
+  const y = v => m.t + (1 - (v - yMin) / (yMax - yMin)) * ih;
+  let g = `<g class="grid">`;
+  for (let v = yMin; v <= yMax + 1e-9; v += yStep) g += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}"></line><text x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end">${fmtY(v)}</text>`;
+  g += `</g>`;
+  let xt = "";
+  labels.forEach((lab, i) => { const t = xTick(lab, i); if (t) xt += `<text x="${x(i)}" y="${H - 8}" text-anchor="middle">${t}</text>`; });
+  const pinSvg = (pins || []).map(p => `<g class="pin"><line x1="${x(p.i)}" x2="${x(p.i)}" y1="${m.t - 6}" y2="${m.t + ih}"></line><text x="${x(p.i) + 4}" y="${m.t - 10}">${esc(p.label)}</text></g>`).join("");
+  const lines = series.map(s => {
+    const d = s.values.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(" ");
+    const last = s.values.length - 1;
+    return `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="${s.width || 2}" stroke-linejoin="round" stroke-linecap="round" ${s.dash ? `stroke-dasharray="${s.dash}"` : ""}></path>` +
+      (s.endLabel ? `<circle cx="${x(last)}" cy="${y(s.values[last])}" r="4" fill="${s.color}" stroke="var(--paper)" stroke-width="2"></circle>` : "");
+  }).join("");
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img">${g}<line class="zero" x1="${m.l}" x2="${W - m.r}" y1="${m.t + ih}" y2="${m.t + ih}"></line>${xt}${pinSvg}${lines}
+    <line class="hair" x1="0" x2="0" y1="${m.t}" y2="${m.t + ih}" stroke="var(--ink-3)" stroke-width="1" visibility="hidden"></line>
+    <rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent" class="hit"></rect></svg><div class="tip" hidden></div>`;
+  const svg = el.querySelector("svg"), tip = el.querySelector(".tip"), hair = el.querySelector(".hair");
+  const move = ev => {
+    const pt = svg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY;
+    const loc = pt.matrixTransform(svg.getScreenCTM().inverse());
+    const i = Math.max(0, Math.min(labels.length - 1, Math.round((loc.x - m.l) / iw * (labels.length - 1))));
+    hair.setAttribute("x1", x(i)); hair.setAttribute("x2", x(i)); hair.setAttribute("visibility", "visible");
+    tip.innerHTML = `<b>${esc(labels[i])}</b><br>` + series.filter(s => s.tip !== false).map(s => `${esc(s.name)}: ${fmtY(s.values[i], true)}`).join("<br>");
+    const box = svg.getBoundingClientRect(), host = el.getBoundingClientRect();
+    tip.style.left = (x(i) / W * box.width + box.left - host.left + el.scrollLeft) + "px";
+    tip.style.top = (m.t / H * box.height + 40) + "px";
+    tip.hidden = false;
+  };
+  const hide = () => { tip.hidden = true; hair.setAttribute("visibility", "hidden"); };
+  svg.querySelector(".hit").addEventListener("pointermove", move);
+  svg.querySelector(".hit").addEventListener("pointerleave", hide);
+}
+
+/* ---------- horizontal bars ---------- */
+function barChart(el, rows, {max, suffix, highlight}) {
+  el.innerHTML = `<div class="bars">` + rows.map(r => {
+    const hi = highlight(r) ? "hi" : "";
+    return `<span class="b-label ${hi}">${esc(r.label)}</span><span class="b-track ${hi}"><span class="b-bar" style="width:calc((100% - 64px) * ${(r.v / max).toFixed(4)})"></span><span class="b-val">+${fmt(r.v, Number.isInteger(r.v) ? 0 : 1)}${suffix}</span></span>`;
+  }).join("") + `</div>`;
+}
+
+/* ---------- render ---------- */
+const TOTALS = {prices: 45, food: 59, flats: 81, rent: 72};
+
+function factorList(topic) {
+  const L = T[LANG];
+  return `<div class="factors">` + L[topic].factors.map(f => `
+    <details class="factor ${f.kind === "amber" ? "f-signal" : ""}" id="${f.id}">
+      <summary>${swatch(f.kind)}<span><span class="f-name">${esc(f.name)}</span><span class="f-sum">${esc(f.sum)}</span></span><span class="f-share">${pct(f.share)}</span><span class="chev" aria-hidden="true">›</span></summary>
+      <ul class="evidence">${f.ev.map(([t, s]) => `<li>${esc(t)}${cites(s)}${f.link && !s.length ? ` <a href="#${f.link}">${esc(L.nav[f.link])} →</a>` : ""}</li>`).join("")}</ul>
+    </details>`).join("") + `</div>`;
+}
+
+function render() {
+  const L = T[LANG];
+  document.documentElement.lang = LANG === "sr" ? "sr-Latn" : LANG;
+  document.title = L.htmlTitle;
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
+  $("#nav").innerHTML = Object.entries(L.nav).map(([k, v]) => `<a href="#${k}">${esc(v)}</a>`).join("");
+
+  const card = topic => `
+    <div class="entry">
+      <div class="entry-head"><span class="entry-name">${esc(L.cards[topic].name)}</span><span class="entry-basis">${esc(L.cards[topic].basis)}</span></div>
+      <div class="donut-row">
+        ${donut(topic, TOTALS[topic])}
+        <ul class="keys">${L[topic].factors.map(f => `<li class="${f.kind === "amber" ? "k-signal" : ""}"><a href="#${f.id}" data-go="${f.id}">${swatch(f.kind)}<span class="k-name">${esc(f.name)}</span><span class="k-val">${pct(f.share)}</span></a></li>`).join("")}</ul>
+      </div>
+      <a class="entry-more" href="#${topic}">${esc(L.more)}</a>
+    </div>`;
+
+  const topicHead = (id, figure) => `
+    <div class="topic-head">
+      <div><div class="eyebrow">${esc(L.nav[id])}</div><h2>${esc(L[id].h2)}</h2></div>
+      ${figure ? `<div class="topic-figure">+${figure}%<small>${esc(L[id].figureSub)}</small></div>` : ""}
+    </div>`;
+
+  $("#app").innerHTML = `
+  <section class="hero" id="tldr">
+    <div class="eyebrow">${esc(L.eyebrow)}</div>
+    <h1>${esc(L.h1)}</h1>
+    <p class="verdict">${L.verdict}</p>
+    <div class="ledger">${["prices", "food", "flats", "rent"].map(card).join("")}</div>
+    <p class="note-small">${esc(L.period)} ${esc(L.signalNote)}</p>
+  </section>
+
+  <section class="topic" id="prices">
+    ${topicHead("prices", 45)}
+    <p class="lead">${esc(L.prices.lead)}</p>
+    <div class="panel"><h3>${esc(L.prices.chartTitle)}</h3><p class="sub">${esc(L.prices.chartSub)} ${cites(["ES-HICP","ES-HICPW"])}</p><div class="chart" id="c-cpi"></div></div>
+    ${factorList("prices")}
+  </section>
+
+  <section class="topic" id="food">
+    ${topicHead("food", 59)}
+    <p class="lead">${esc(L.food.lead)}</p>
+    <div class="panel"><h3>${esc(L.food.chartTitle)}</h3><p class="sub">${esc(L.food.chartSub)} ${cites(["ES-HICP"])}</p><div class="chart" id="c-food"></div></div>
+    ${factorList("food")}
+  </section>
+
+  <section class="topic" id="flats">
+    ${topicHead("flats", 81)}
+    <p class="lead">${esc(L.flats.lead)}</p>
+    <div class="panel"><h3>${esc(L.flats.chartTitle)}</h3><p class="sub">${esc(L.flats.chartSub)} ${cites(["RGZ-REP","RGZ-Q4-22"])}</p><div class="chart" id="c-bgd"></div></div>
+    <div class="panel"><h3>${esc(L.flats.chart2Title)}</h3><p class="sub">${esc(L.flats.chart2Sub)} ${cites(["ES-HPI","RGZ-2026"])}</p><div class="chart" id="c-hpi"></div></div>
+    ${factorList("flats")}
+  </section>
+
+  <section class="topic" id="rent">
+    ${topicHead("rent", 72)}
+    <p class="lead">${esc(L.rent.lead)}</p>
+    <div class="panel"><h3>${esc(L.rent.chartTitle)}</h3><p class="sub">${esc(L.rent.chartSub)} ${cites(["ES-HICP"])}</p>
+      <div class="legend"><span><i style="background:var(--s-amber);height:4px"></i>${esc(L.rent.legendRS)}</span><span><i style="background:var(--s-violet)"></i>${esc(L.rent.legendME)}</span><span><i style="background:var(--line-ctrl)"></i>${esc(L.rent.legendCtrl)}</span></div>
+      <div class="chart" id="c-rent"></div></div>
+    ${factorList("rent")}
+  </section>
+
+  <section class="topic" id="migrants">
+    ${topicHead("migrants")}
+    <p class="lead">${esc(L.migrants.lead)}</p>
+    <div class="facts">${L.migrants.facts.map(([b, s, c]) => `<div class="fact"><b>${esc(b)}</b><span>${esc(s)}${cites(c)}</span></div>`).join("")}</div>
+    <p class="note-small">${esc(L.migrants.gap)}</p>
+  </section>
+
+  <section class="topic" id="cars">
+    ${topicHead("cars")}
+    <p class="lead">${esc(L.cars.lead)}</p>
+    <ul class="evidence" style="margin:18px 0 0">${L.cars.ev.map(([t, s]) => `<li>${esc(t)}${cites(s)}</li>`).join("")}</ul>
+  </section>
+
+  <section class="topic prose" id="method">
+    ${topicHead("method")}
+    ${L.method.body.map(p => `<p>${p}</p>`).join("")}
+    <p class="note-small">${esc(L.method.caveats)}</p>
+  </section>
+
+  <section class="topic" id="sources">
+    ${topicHead("sources")}
+    <p class="lead">${esc(L.sources.lead)}</p>
+    <ol class="sources">${Object.entries(SRC).map(([id, [k, title, url]]) => `<li id="src-${id}"><span class="src-id">${id}</span><span><span class="src-kind">${k}</span><a class="src-title" href="${esc(url)}" rel="noopener" target="_blank">${esc(title)}</a><a class="src-back" href="#" data-back>${esc(L.sources.back)}</a></span></li>`).join("")}</ol>
+  </section>
+
+  <footer>${esc(L.footer)}</footer>`;
+
+  const C = COUNTRY[LANG];
+
+  barChart($("#c-cpi"), DATA.cpi.map(([c, g, w]) => ({label: `${COICOP[LANG][c]} (${fmt(w, 1)}%)`, v: g, c})).sort((a, b) => b.v - a.v),
+    {max: 80, suffix: "%", highlight: r => r.c === "CP041" || r.c === "CP011"});
+  barChart($("#c-food"), DATA.food.map(([c, v]) => ({label: C[c], v, c})), {max: 85, suffix: "%", highlight: r => r.c === "RS"});
+  barChart($("#c-hpi"), DATA.hpi.map(([c, v]) => ({label: C[c], v, c})), {max: 135, suffix: "%", highlight: r => r.c === "RS"});
+
+  const qIdx = q => DATA.bgdQuarters.indexOf(q);
+  lineChart($("#c-bgd"), {
+    labels: DATA.bgdQuarters,
+    series: [{name: "€/m²", values: DATA.bgdResale, color: "var(--ink)", width: 2.5, endLabel: true}],
+    yMin: 1200, yMax: 2400, yStep: 200,
+    fmtY: (v, t) => t ? `${fmt(v)} €/m²` : fmt(v),
+    xTick: (lab) => lab.endsWith(" I") ? lab.slice(0, 4) : "",
+    pins: [{i: qIdx("2022 I") - 0.33, label: L.pins.war}, {i: qIdx("2022 III") + 0.2, label: L.pins.mob}]
+  });
+
+  const mIdx = k => DATA.rentMonths.indexOf(k);
+  const R = DATA.rentReal;
+  lineChart($("#c-rent"), {
+    labels: DATA.rentMonths,
+    series: [
+      {name: C.HR, values: R.HR, color: "var(--line-ctrl)", width: 1.5},
+      {name: C.BG, values: R.BG, color: "var(--line-ctrl)", width: 1.5},
+      {name: C.HU, values: R.HU, color: "var(--line-ctrl)", width: 1.5},
+      {name: C.ME, values: R.ME, color: "var(--s-violet)", width: 2},
+      {name: C.RS, values: R.RS, color: "var(--s-amber)", width: 3, endLabel: true}
+    ],
+    yMin: 85, yMax: 125, yStep: 5,
+    fmtY: (v, t) => t ? fmt(v, 1) : fmt(v),
+    xTick: (lab) => lab.endsWith("-01") ? lab.slice(0, 4) : "",
+    pins: [{i: mIdx("2022-02"), label: L.pins.war}, {i: mIdx("2022-09"), label: L.pins.mob}]
+  });
+}
+
+/* ---------- navigation: slice → factor → source ---------- */
+let lastCite = null;
+function openFactor(id) {
+  const d = document.getElementById(id);
+  if (!d) return;
+  d.open = true;
+  d.classList.add("flash");
+  setTimeout(() => d.classList.remove("flash"), 1600);
+  d.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"});
+  history.replaceState(null, "", "#" + id);
+}
+document.addEventListener("click", e => {
+  const go = e.target.closest("[data-go]");
+  if (go) { e.preventDefault(); openFactor(go.dataset.go); return; }
+  const c = e.target.closest(".cite");
+  if (c) { lastCite = c; return; }
+  const back = e.target.closest("[data-back]");
+  if (back) { e.preventDefault(); (lastCite || $("#tldr")).scrollIntoView({block: "center"}); lastCite?.focus(); }
+  const lb = e.target.closest(".lang button");
+  if (lb) setLang(lb.dataset.lang);
+});
+document.addEventListener("keydown", e => {
+  const go = e.target.closest?.("path[data-go]");
+  if (go && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openFactor(go.dataset.go); }
+});
+
+function setLang(l) {
+  LANG = l;
+  try { localStorage.setItem("lang", l); } catch (_) {}
+  const u = new URL(location.href); u.searchParams.set("lang", l); history.replaceState(null, "", u);
+  const keep = location.hash;
+  render();
+  if (keep && keep.length > 1) { const t = document.getElementById(keep.slice(1)); if (t?.tagName === "DETAILS") t.open = true; }
+}
+
+(function start() {
+  const q = new URLSearchParams(location.search).get("lang");
+  let saved = null; try { saved = localStorage.getItem("lang"); } catch (_) {}
+  const nav = (navigator.language || "en").toLowerCase();
+  const guess = /^(sr|hr|bs|me|sh)/.test(nav) ? "sr" : /^(ru|uk|be|kk)/.test(nav) ? "ru" : "en";
+  LANG = [q, saved, guess].find(x => x && T[x]) || "sr";
+  render();
+  const h = location.hash.slice(1);
+  if (h) { const t = document.getElementById(h); if (t?.tagName === "DETAILS") { t.open = true; t.scrollIntoView(); } }
+})();
+</script>
+</body>
+</html>
