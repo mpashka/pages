@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ko je podigao cene u Srbiji</title>
 <meta name="description" content="Zašto su cene u Srbiji porasle 2019–2025. i kako je na njih uticao priliv ruskih migranata 2022. Podaci RGZ, RZS, NBS i Eurostata na srpskom, ruskom i engleskom.">
+<link rel="canonical" href="https://mpashka.github.io/pages/life/serbia/accomodation-price/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mpashka.github.io/pages/life/serbia/accomodation-price/">
+<meta property="og:title" content="Ko je podigao cene u Srbiji?">
+<meta property="og:description" content="Srbija 2019–2025: sve cene +45%, stanovi +81%, kirije +72%. Doprinos priliva ruskih migranata: kirije ~23% rasta, stanovi ≤3%. Podaci RGZ, RZS, NBS i Eurostata.">
+<meta property="og:locale" content="sr_RS">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:image" content="https://mpashka.github.io/pages/life/serbia/accomodation-price/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ko je podigao cene u Srbiji? Sve cene +45%, hrana +59%, stanovi +81%, kirije +72%">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ko je podigao cene u Srbiji?">
+<meta name="twitter:description" content="Srbija 2019–2025: sve cene +45%, stanovi +81%, kirije +72%. Doprinos priliva ruskih migranata: kirije ~23% rasta, stanovi ≤3%.">
+<meta name="twitter:image" content="https://mpashka.github.io/pages/life/serbia/accomodation-price/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Unbounded:wght@500;700&display=swap&subset=cyrillic,latin-ext">
@@ -249,6 +266,54 @@ footer { padding-block: 40px 60px; color: var(--ink-3); font-size: 13px; border-
 .prose p { max-width: 70ch; margin: 14px 0 0; }
 .prose ul { max-width: 70ch; padding-left: 20px; }
 .prose li { margin: 6px 0; }
+
+/* share */
+.share { position: fixed; z-index: 20; display: flex; gap: 2px; background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(6px); }
+.share-label { font: 500 10px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); text-align: center; }
+.share-btn {
+  --brand: var(--ink);
+  flex: none; display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0;
+  border: 0; border-radius: 6px; background: transparent; color: var(--ink-2); cursor: pointer; text-decoration: none;
+  transition: color .12s, background-color .12s;
+}
+.share-btn svg { width: 22px; height: 22px; }
+.share-btn:hover { color: var(--brand); background: color-mix(in srgb, var(--brand) 10%, transparent); }
+.share-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; border-radius: 6px; color: var(--ink); }
+.share-btn[data-share="facebook"] { --brand: #1877f2; }
+.share-btn[data-share="telegram"] { --brand: #229ed9; }
+.share-btn[data-share="whatsapp"] { --brand: #1da851; }
+.share-btn[data-share="viber"] { --brand: #7360f2; }
+.share-btn[data-share="linkedin"] { --brand: #0a66c2; }
+.share-btn[data-share="reddit"] { --brand: #ff4500; }
+.share-sep { flex: none; background: var(--rule); }
+.toast {
+  position: fixed; z-index: 30; left: 50%; transform: translateX(-50%);
+  bottom: calc(24px + env(safe-area-inset-bottom)); background: var(--ink); color: var(--ground);
+  font: 500 13px/1 var(--font-mono); padding: 11px 14px; border-radius: 4px; pointer-events: none;
+}
+@media (min-width: 900px) {
+  .wrap { max-width: 1184px; padding-left: 84px; }
+  .share {
+    left: 10px; top: 50%; transform: translateY(-50%); flex-direction: column; align-items: center;
+    padding: 10px 2px; border: 1px solid var(--rule); border-radius: 8px; max-height: calc(100vh - 80px); overflow-y: auto;
+  }
+  .share-label { padding-bottom: 6px; }
+  .share-sep { width: 24px; height: 1px; margin: 4px 0; }
+}
+@media (max-width: 899.98px) {
+  body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+  .share {
+    left: 0; right: 0; bottom: 0; align-items: center; justify-content: safe center;
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); border-top: 1px solid var(--rule);
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .share::-webkit-scrollbar { display: none; }
+  .share-label { display: none; }
+  .share-sep { width: 1px; height: 24px; margin: 0 4px; }
+  .share.has-native .share-extra { display: none; }
+  .toast { bottom: calc(72px + env(safe-area-inset-bottom)); }
+}
+@media (max-width: 420px) { .share-btn { width: 40px; height: 40px; } }
 </style>
 </head>
 <body>
@@ -274,6 +339,9 @@ footer { padding-block: 40px 60px; color: var(--ink-3); font-size: 13px; border-
 </header>
 
 <main id="app" class="wrap"></main>
+
+<aside class="share" id="share"></aside>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
 /* ---------- data (primary series; see sources) ---------- */
@@ -356,6 +424,7 @@ const COICOP = {
 
 const T = {
 ru: {
+  share: {label:"Поделиться", text:"Почему цены в Сербии выросли в 2019–2025 годах и насколько на это повлиял приток русских мигрантов — анализ на данных RGZ, NBS и Евростата", title:"Кто поднял цены в Сербии?", copied:"Ссылка скопирована", native:"Поделиться…", facebook:"Поделиться в Facebook", telegram:"Отправить в Telegram", whatsapp:"Отправить в WhatsApp", viber:"Отправить в Viber", x:"Поделиться в X", linkedin:"Поделиться в LinkedIn", reddit:"Опубликовать на Reddit", copy:"Скопировать ссылку"},
   htmlTitle: "Кто поднял цены в Сербии",
   nav: {tldr:"Коротко", prices:"Все цены", food:"Еда", flats:"Квартиры", rent:"Аренда", migrants:"Русские", cars:"Машины", method:"Метод", sources:"Источники"},
   eyebrow: "Сербия · 2019–2025 · официальная статистика",
@@ -497,6 +566,7 @@ ru: {
 },
 
 sr: {
+  share: {label:"Podeli", text:"Zašto su cene u Srbiji porasle 2019–2025. i koliko je na to uticao priliv ruskih migranata — analiza na podacima RGZ, NBS i Eurostata", title:"Ko je podigao cene u Srbiji?", copied:"Link kopiran", native:"Podeli…", facebook:"Podeli na Facebooku", telegram:"Pošalji na Telegram", whatsapp:"Pošalji na WhatsApp", viber:"Pošalji na Viber", x:"Podeli na X", linkedin:"Podeli na LinkedInu", reddit:"Objavi na Redditu", copy:"Kopiraj link"},
   htmlTitle: "Ko je podigao cene u Srbiji",
   nav: {tldr:"Ukratko", prices:"Sve cene", food:"Hrana", flats:"Stanovi", rent:"Kirije", migrants:"Rusi", cars:"Automobili", method:"Metod", sources:"Izvori"},
   eyebrow: "Srbija · 2019–2025 · zvanična statistika",
@@ -638,6 +708,7 @@ sr: {
 },
 
 en: {
+  share: {label:"Share", text:"Why prices in Serbia rose in 2019–2025 and how much the inflow of Russian migrants contributed — an analysis of RGZ, NBS and Eurostat data", title:"Who raised prices in Serbia?", copied:"Link copied", native:"Share…", facebook:"Share on Facebook", telegram:"Send via Telegram", whatsapp:"Send via WhatsApp", viber:"Send via Viber", x:"Share on X", linkedin:"Share on LinkedIn", reddit:"Post to Reddit", copy:"Copy link"},
   htmlTitle: "Who Raised Prices in Serbia",
   nav: {tldr:"TL;DR", prices:"All prices", food:"Food", flats:"Flats", rent:"Rent", migrants:"Russians", cars:"Cars", method:"Method", sources:"Sources"},
   eyebrow: "Serbia · 2019–2025 · official statistics",
@@ -878,6 +949,7 @@ function render() {
   document.documentElement.lang = LANG === "sr" ? "sr-Latn" : LANG;
   document.title = L.htmlTitle;
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
+  renderShare();
   $("#nav").innerHTML = Object.entries(L.nav).map(([k, v]) => `<a href="#${k}">${esc(v)}</a>`).join("");
 
   const card = topic => `
@@ -998,6 +1070,83 @@ function render() {
   });
 }
 
+/* ---------- share ---------- */
+const PAGE_URL = "https://mpashka.github.io/pages/life/serbia/accomodation-price/";
+const HAS_NATIVE_SHARE = typeof navigator.share === "function";
+const svg = body => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
+const ICON = {
+  native: svg(`<path d="M12 3v12M7.5 7.5 12 3l4.5 4.5M5 12v7.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V12"/>`),
+  facebook: svg(`<path fill="currentColor" stroke="none" d="M13.6 22v-8.4h2.8l.5-3.4h-3.3V8.1c0-1 .3-1.7 1.7-1.7H17V3.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.6H7.5v3.4h2.8V22z"/>`),
+  telegram: svg(`<path fill="currentColor" stroke="none" d="M21.2 3.6 2.9 10.6c-1.1.4-1.1 1.9 0 2.2l4.6 1.4 1.8 5.5c.2.7 1.1.9 1.6.4l2.6-2.5 4.8 3.5c.6.4 1.5.1 1.7-.6l3.2-15.4c.2-1-.7-1.8-1.6-1.5zm-3.4 3.7-8 7.3-.3 3.3-1.4-4.6z"/>`),
+  whatsapp: svg(`<path d="M3.6 20.4 4.9 16A8.5 8.5 0 1 1 8 19.1z"/><path fill="currentColor" stroke="none" d="M9.1 7.6c.2-.2.4-.3.7-.3h.5c.2 0 .4.1.5.4l.8 1.8c.1.2 0 .5-.1.6l-.6.7c-.1.1-.1.3 0 .5.7 1.2 1.6 2.1 2.8 2.8.2.1.4.1.5 0l.7-.6c.2-.1.4-.2.6-.1l1.8.8c.3.1.4.3.4.5v.5c0 .3-.1.5-.3.7-.6.6-1.5.9-2.4.7-2.9-.7-5.1-2.9-5.8-5.8-.2-.9.1-1.8.9-2.4z"/>`),
+  viber: svg(`<path d="M12 2.8c-4.9 0-8.3 1.5-8.3 7.6 0 3.6 1.1 5.6 3.3 6.6v3.5c0 .4.5.6.8.3l2.7-3.1h1.5c4.9 0 8.3-1.5 8.3-7.4S16.9 2.8 12 2.8z"/><path d="M12.9 6.6a3.6 3.6 0 0 1 3.3 3.3M12.9 8.6a1.5 1.5 0 0 1 1.3 1.3"/><path fill="currentColor" stroke="none" d="M8.2 7.1c.2-.2.4-.2.6-.2h.3c.2 0 .3.1.4.3l.6 1.4c.1.2 0 .4-.1.5l-.4.5c-.1.1-.1.2 0 .4.5.9 1.2 1.6 2.1 2.1.1.1.3.1.4 0l.5-.4c.1-.1.3-.2.5-.1l1.4.6c.2.1.3.2.3.4v.3c0 .2-.1.4-.2.6-.5.4-1.2.6-1.8.5-2.2-.5-3.9-2.2-4.4-4.4-.1-.7.1-1.4.6-1.9z"/>`),
+  x: svg(`<path fill="currentColor" stroke="none" d="M3.8 3.5h4.9l11.5 17h-4.9z"/><path d="m19.8 3.5-6.6 7.4M4.2 20.5l6.7-7.5"/>`),
+  linkedin: svg(`<rect x="2.8" y="2.8" width="18.4" height="18.4" rx="3"/><path fill="currentColor" stroke="none" d="M7 10h2.3v7H7zm1.2-3.8a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6zM11 10h2.2v1c.4-.7 1.2-1.2 2.3-1.2 2 0 2.6 1.3 2.6 3.2v4h-2.3v-3.5c0-.9-.2-1.7-1.1-1.7-1 0-1.4.7-1.4 1.7V17H11z"/>`),
+  reddit: svg(`<ellipse cx="12" cy="14.6" rx="8" ry="5.6"/><circle cx="4.7" cy="10.6" r="1.6"/><circle cx="19.3" cy="10.6" r="1.6"/><path d="M12 9 13.2 3.9l3.6.8"/><circle cx="18.3" cy="5" r="1.4"/><circle fill="currentColor" stroke="none" cx="9" cy="13.7" r="1.2"/><circle fill="currentColor" stroke="none" cx="15" cy="13.7" r="1.2"/><path d="M9.2 16.9c1.7 1 3.9 1 5.6 0"/>`),
+  copy: svg(`<path d="M10 14a4.2 4.2 0 0 0 6 0l3-3a4.2 4.2 0 0 0-6-6l-1.1 1.1M14 10a4.2 4.2 0 0 0-6 0l-3 3a4.2 4.2 0 0 0 6 6l1.1-1.1"/>`)
+};
+const SHARE_NETS = [
+  ["facebook", (u, t) => `https://www.facebook.com/sharer/sharer.php?u=${u}`],
+  ["telegram", (u, t) => `https://t.me/share/url?url=${u}&text=${t}`],
+  ["whatsapp", (u, t) => `https://wa.me/?text=${t}%20${u}`],
+  ["viber", (u, t) => `viber://forward?text=${t}%20${u}`],
+  ["x", (u, t) => `https://twitter.com/intent/tweet?url=${u}&text=${t}`, true],
+  ["linkedin", (u, t) => `https://www.linkedin.com/sharing/share-offsite/?url=${u}`, true],
+  ["reddit", (u, t, title) => `https://www.reddit.com/submit?url=${u}&title=${title}`, true]
+];
+const shareUrl = () => `${PAGE_URL}?lang=${LANG}`;
+
+function renderShare() {
+  const S = T[LANG].share;
+  const u = encodeURIComponent(shareUrl()), t = encodeURIComponent(S.text), title = encodeURIComponent(S.title);
+  const btn = (net, attrs, extra) => `<${attrs.href ? "a" : "button"} class="share-btn${extra ? " share-extra" : ""}" data-share="${net}" aria-label="${esc(S[net])}" title="${esc(S[net])}" ${attrs.href ? `href="${esc(attrs.href)}"${attrs.href.startsWith("http") ? ` target="_blank" rel="noopener"` : ""}` : `type="button"`}>${ICON[net]}</${attrs.href ? "a" : "button"}>`;
+  const box = $("#share");
+  box.setAttribute("aria-label", S.label);
+  box.classList.toggle("has-native", HAS_NATIVE_SHARE);
+  box.innerHTML = `<span class="share-label" aria-hidden="true">${esc(S.label)}</span>`
+    + (HAS_NATIVE_SHARE ? btn("native", {}) : "")
+    + SHARE_NETS.map(([net, href, extra]) => btn(net, {href: href(u, t, title)}, extra)).join("")
+    + `<span class="share-sep" aria-hidden="true"></span>` + btn("copy", {});
+}
+
+let toastTimer = null;
+function showToast(text) {
+  const el = $("#toast");
+  el.textContent = text;
+  el.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { el.hidden = true; }, 2000);
+}
+
+function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text).catch(() => copyTextFallback(text));
+  return copyTextFallback(text);
+}
+function copyTextFallback(text) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.setAttribute("readonly", "");
+  ta.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+  document.body.appendChild(ta);
+  ta.select();
+  const ok = document.execCommand("copy");
+  ta.remove();
+  return ok ? Promise.resolve() : Promise.reject(new Error("copy failed"));
+}
+
+function onShare(el, e) {
+  const net = el.dataset.share;
+  window.trackShare?.(net);
+  const S = T[LANG].share;
+  if (net === "native") {
+    e.preventDefault();
+    navigator.share({title: S.title, text: S.text, url: shareUrl()}).catch(() => {});
+  } else if (net === "copy") {
+    e.preventDefault();
+    copyText(shareUrl()).then(() => showToast(S.copied), () => window.prompt(S.copy, shareUrl()));
+  }
+}
+
 /* ---------- navigation: slice → factor → source ---------- */
 let lastCite = null;
 function openFactor(id) {
@@ -1010,6 +1159,8 @@ function openFactor(id) {
   history.replaceState(null, "", "#" + id);
 }
 document.addEventListener("click", e => {
+  const sh = e.target.closest("[data-share]");
+  if (sh) { onShare(sh, e); return; }
   const go = e.target.closest("[data-go]");
   if (go) { e.preventDefault(); openFactor(go.dataset.go); return; }
   const c = e.target.closest(".cite");
