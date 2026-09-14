@@ -268,8 +268,7 @@ footer { padding-block: 40px 60px; color: var(--ink-3); font-size: 13px; border-
 .prose li { margin: 6px 0; }
 
 /* share */
-.share { position: fixed; z-index: 20; display: flex; gap: 2px; background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(6px); }
-.share-label { font: 500 10px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); text-align: center; }
+.share-row { display: flex; flex-wrap: wrap; gap: 2px; }
 .share-btn {
   --brand: var(--ink);
   flex: none; display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0;
@@ -285,35 +284,65 @@ footer { padding-block: 40px 60px; color: var(--ink-3); font-size: 13px; border-
 .share-btn[data-share="viber"] { --brand: #7360f2; }
 .share-btn[data-share="linkedin"] { --brand: #0a66c2; }
 .share-btn[data-share="reddit"] { --brand: #ff4500; }
-.share-sep { flex: none; background: var(--rule); }
+
+.strip .wrap { position: relative; }
+.share-open {
+  display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+  font: 500 12px/1 var(--font-mono); letter-spacing: .04em; color: var(--ink);
+  background: transparent; border: 1px solid var(--rule-strong); border-radius: 999px; padding: 7px 13px 7px 10px;
+}
+.share-open svg { width: 18px; height: 18px; }
+.share-open:hover, .share-open[aria-expanded="true"] { background: var(--ink); border-color: var(--ink); color: var(--ground); }
+@media (max-width: 600px) { .share-open { padding: 7px; } .share-open-label { display: none; } }
+
+.share-panel {
+  position: absolute; z-index: 25; overflow: hidden;
+  background: color-mix(in srgb, var(--paper) 96%, transparent); backdrop-filter: blur(6px);
+  border: 1px solid var(--rule-strong); box-shadow: 0 12px 32px -14px rgba(22, 35, 42, .45);
+  transition: opacity .18s ease, transform .2s ease, visibility 0s linear .2s;
+}
+.share-panel.open { transition: opacity .18s ease, transform .2s ease, visibility 0s; }
+.share-panel:not(.open) { visibility: hidden; opacity: 0; }
+.share-panel-cap { font: 500 10px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); padding: 4px 6px 8px; }
+.share-timer { position: absolute; left: 0; bottom: 0; width: 100%; height: 3px; background: var(--s-amber); transform-origin: left; }
+.share-panel.open .share-timer { animation: share-timer var(--share-ms) linear forwards; }
+.share-panel.hold .share-timer { animation-play-state: paused; }
+@keyframes share-timer { to { transform: scaleX(0); } }
+
+#share-pop { top: calc(100% + 6px); right: 20px; padding: 8px; border-radius: 10px; }
+#share-pop:not(.open) { transform: translateY(-6px); }
+#share-pop .share-row { display: grid; grid-template-columns: repeat(4, 44px); }
+
+.share-fab {
+  position: fixed; z-index: 24; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom));
+  width: 52px; height: 52px; border-radius: 50%; border: 0; cursor: pointer;
+  display: grid; place-items: center; background: var(--ink); color: var(--ground);
+  box-shadow: 0 10px 26px -10px rgba(22, 35, 42, .55);
+}
+.share-fab svg { width: 22px; height: 22px; }
+.share-fab:focus-visible { outline-offset: 3px; border-radius: 50%; }
+#share-fab-menu {
+  position: fixed; right: 23px; bottom: calc(82px + env(safe-area-inset-bottom));
+  padding: 6px 1px; border-radius: 24px; max-height: calc(100vh - 110px); overflow-y: auto;
+}
+#share-fab-menu:not(.open) { transform: translateY(10px) scale(.97); }
+#share-fab-menu .share-row { flex-direction: column; flex-wrap: nowrap; }
+
+.share-end {
+  margin-top: 56px; padding: 22px 24px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px 32px; align-items: center;
+  background: var(--paper); border: 1px solid var(--rule-strong); border-radius: 8px;
+}
+.share-end h2 { font-size: clamp(18px, 2.2vw, 22px); margin: 0; }
+.share-end p { margin: 6px 0 0; color: var(--ink-2); font-size: 15px; max-width: 52ch; }
+@media (max-width: 760px) { .share-end { grid-template-columns: 1fr; } .share-end .share-row { margin-left: -10px; } }
+
 .toast {
   position: fixed; z-index: 30; left: 50%; transform: translateX(-50%);
   bottom: calc(24px + env(safe-area-inset-bottom)); background: var(--ink); color: var(--ground);
   font: 500 13px/1 var(--font-mono); padding: 11px 14px; border-radius: 4px; pointer-events: none;
 }
-@media (min-width: 900px) {
-  .wrap { max-width: 1184px; padding-left: 84px; }
-  .share {
-    left: 10px; top: 50%; transform: translateY(-50%); flex-direction: column; align-items: center;
-    padding: 10px 2px; border: 1px solid var(--rule); border-radius: 8px; max-height: calc(100vh - 80px); overflow-y: auto;
-  }
-  .share-label { padding-bottom: 6px; }
-  .share-sep { width: 24px; height: 1px; margin: 4px 0; }
-}
-@media (max-width: 899.98px) {
-  body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
-  .share {
-    left: 0; right: 0; bottom: 0; align-items: center; justify-content: safe center;
-    padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); border-top: 1px solid var(--rule);
-    overflow-x: auto; scrollbar-width: none;
-  }
-  .share::-webkit-scrollbar { display: none; }
-  .share-label { display: none; }
-  .share-sep { width: 1px; height: 24px; margin: 0 4px; }
-  .share.has-native .share-extra { display: none; }
-  .toast { bottom: calc(72px + env(safe-area-inset-bottom)); }
-}
-@media (max-width: 420px) { .share-btn { width: 40px; height: 40px; } }
+@media (max-width: 600px) { .toast { bottom: calc(84px + env(safe-area-inset-bottom)); } }
+@media (prefers-reduced-motion: reduce) { .share-panel, .share-panel.open { transition: none; } }
 </style>
 </head>
 <body>
@@ -335,12 +364,15 @@ footer { padding-block: 40px 60px; color: var(--ink-3); font-size: 13px; border-
       <button type="button" id="lang-ru" data-lang="ru">RU</button>
       <button type="button" id="lang-en" data-lang="en">EN</button>
     </div>
+    <button type="button" class="share-open" id="share-open" data-share-open="share-pop" aria-expanded="false" aria-controls="share-pop"></button>
+    <div class="share-panel" id="share-pop" role="dialog"></div>
   </div>
 </header>
 
 <main id="app" class="wrap"></main>
 
-<aside class="share" id="share"></aside>
+<div class="share-panel" id="share-fab-menu" role="dialog"></div>
+<button type="button" class="share-fab" id="share-fab" data-share-open="share-fab-menu" aria-expanded="false" aria-controls="share-fab-menu"></button>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
@@ -424,7 +456,7 @@ const COICOP = {
 
 const T = {
 ru: {
-  share: {label:"Поделиться", text:"Почему цены в Сербии выросли в 2019–2025 годах и насколько на это повлиял приток русских мигрантов — анализ на данных RGZ, NBS и Евростата", title:"Кто поднял цены в Сербии?", copied:"Ссылка скопирована", native:"Поделиться…", facebook:"Поделиться в Facebook", telegram:"Отправить в Telegram", whatsapp:"Отправить в WhatsApp", viber:"Отправить в Viber", x:"Поделиться в X", linkedin:"Поделиться в LinkedIn", reddit:"Опубликовать на Reddit", copy:"Скопировать ссылку"},
+  share: {label:"Поделиться", text:"Почему цены в Сербии выросли в 2019–2025 годах и насколько на это повлиял приток русских мигрантов — анализ на данных RGZ, NBS и Евростата", title:"Кто поднял цены в Сербии?", copied:"Ссылка скопирована", native:"Поделиться…", facebook:"Поделиться в Facebook", telegram:"Отправить в Telegram", whatsapp:"Отправить в WhatsApp", viber:"Отправить в Viber", x:"Поделиться в X", linkedin:"Поделиться в LinkedIn", reddit:"Опубликовать на Reddit", copy:"Скопировать ссылку", endTitle:"Поделиться исследованием", endText:"Ссылка откроется на русском; сербская и английская версии — в шапке страницы."},
   htmlTitle: "Кто поднял цены в Сербии",
   nav: {tldr:"Коротко", prices:"Все цены", food:"Еда", flats:"Квартиры", rent:"Аренда", migrants:"Русские", cars:"Машины", method:"Метод", sources:"Источники"},
   eyebrow: "Сербия · 2019–2025 · официальная статистика",
@@ -566,7 +598,7 @@ ru: {
 },
 
 sr: {
-  share: {label:"Podeli", text:"Zašto su cene u Srbiji porasle 2019–2025. i koliko je na to uticao priliv ruskih migranata — analiza na podacima RGZ, NBS i Eurostata", title:"Ko je podigao cene u Srbiji?", copied:"Link kopiran", native:"Podeli…", facebook:"Podeli na Facebooku", telegram:"Pošalji na Telegram", whatsapp:"Pošalji na WhatsApp", viber:"Pošalji na Viber", x:"Podeli na X", linkedin:"Podeli na LinkedInu", reddit:"Objavi na Redditu", copy:"Kopiraj link"},
+  share: {label:"Podeli", text:"Zašto su cene u Srbiji porasle 2019–2025. i koliko je na to uticao priliv ruskih migranata — analiza na podacima RGZ, NBS i Eurostata", title:"Ko je podigao cene u Srbiji?", copied:"Link kopiran", native:"Podeli…", facebook:"Podeli na Facebooku", telegram:"Pošalji na Telegram", whatsapp:"Pošalji na WhatsApp", viber:"Pošalji na Viber", x:"Podeli na X", linkedin:"Podeli na LinkedInu", reddit:"Objavi na Redditu", copy:"Kopiraj link", endTitle:"Podelite istraživanje", endText:"Link se otvara na srpskom; ruska i engleska verzija su u zaglavlju stranice."},
   htmlTitle: "Ko je podigao cene u Srbiji",
   nav: {tldr:"Ukratko", prices:"Sve cene", food:"Hrana", flats:"Stanovi", rent:"Kirije", migrants:"Rusi", cars:"Automobili", method:"Metod", sources:"Izvori"},
   eyebrow: "Srbija · 2019–2025 · zvanična statistika",
@@ -708,7 +740,7 @@ sr: {
 },
 
 en: {
-  share: {label:"Share", text:"Why prices in Serbia rose in 2019–2025 and how much the inflow of Russian migrants contributed — an analysis of RGZ, NBS and Eurostat data", title:"Who raised prices in Serbia?", copied:"Link copied", native:"Share…", facebook:"Share on Facebook", telegram:"Send via Telegram", whatsapp:"Send via WhatsApp", viber:"Send via Viber", x:"Share on X", linkedin:"Share on LinkedIn", reddit:"Post to Reddit", copy:"Copy link"},
+  share: {label:"Share", text:"Why prices in Serbia rose in 2019–2025 and how much the inflow of Russian migrants contributed — an analysis of RGZ, NBS and Eurostat data", title:"Who raised prices in Serbia?", copied:"Link copied", native:"Share…", facebook:"Share on Facebook", telegram:"Send via Telegram", whatsapp:"Send via WhatsApp", viber:"Send via Viber", x:"Share on X", linkedin:"Share on LinkedIn", reddit:"Post to Reddit", copy:"Copy link", endTitle:"Share this analysis", endText:"The link opens in English; Serbian and Russian versions are in the page header."},
   htmlTitle: "Who Raised Prices in Serbia",
   nav: {tldr:"TL;DR", prices:"All prices", food:"Food", flats:"Flats", rent:"Rent", migrants:"Russians", cars:"Cars", method:"Method", sources:"Sources"},
   eyebrow: "Serbia · 2019–2025 · official statistics",
@@ -1021,6 +1053,11 @@ function render() {
     <ul class="evidence" style="margin:18px 0 0">${L.cars.ev.map(([t, s]) => `<li>${esc(t)}${cites(s)}</li>`).join("")}</ul>
   </section>
 
+  <aside class="share-end" aria-labelledby="share-end-title">
+    <div><h2 id="share-end-title">${esc(L.share.endTitle)}</h2><p>${esc(L.share.endText)}</p></div>
+    <div class="share-row">${shareButtons(HAS_NATIVE_SHARE)}</div>
+  </aside>
+
   <section class="topic prose" id="method">
     ${topicHead("method")}
     ${L.method.body.map(p => `<p>${p}</p>`).join("")}
@@ -1075,7 +1112,7 @@ const PAGE_URL = "https://mpashka.github.io/pages/life/serbia/accomodation-price
 const HAS_NATIVE_SHARE = typeof navigator.share === "function";
 const svg = body => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
 const ICON = {
-  native: svg(`<path d="M12 3v12M7.5 7.5 12 3l4.5 4.5M5 12v7.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V12"/>`),
+  native: svg(`<circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="5.5" r="2.6"/><circle cx="18" cy="18.5" r="2.6"/><path d="m8.3 10.8 7.4-4.1M8.3 13.2l7.4 4.1"/>`),
   facebook: svg(`<path fill="currentColor" stroke="none" d="M13.6 22v-8.4h2.8l.5-3.4h-3.3V8.1c0-1 .3-1.7 1.7-1.7H17V3.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.6H7.5v3.4h2.8V22z"/>`),
   telegram: svg(`<path fill="currentColor" stroke="none" d="M21.2 3.6 2.9 10.6c-1.1.4-1.1 1.9 0 2.2l4.6 1.4 1.8 5.5c.2.7 1.1.9 1.6.4l2.6-2.5 4.8 3.5c.6.4 1.5.1 1.7-.6l3.2-15.4c.2-1-.7-1.8-1.6-1.5zm-3.4 3.7-8 7.3-.3 3.3-1.4-4.6z"/>`),
   whatsapp: svg(`<path d="M3.6 20.4 4.9 16A8.5 8.5 0 1 1 8 19.1z"/><path fill="currentColor" stroke="none" d="M9.1 7.6c.2-.2.4-.3.7-.3h.5c.2 0 .4.1.5.4l.8 1.8c.1.2 0 .5-.1.6l-.6.7c-.1.1-.1.3 0 .5.7 1.2 1.6 2.1 2.8 2.8.2.1.4.1.5 0l.7-.6c.2-.1.4-.2.6-.1l1.8.8c.3.1.4.3.4.5v.5c0 .3-.1.5-.3.7-.6.6-1.5.9-2.4.7-2.9-.7-5.1-2.9-5.8-5.8-.2-.9.1-1.8.9-2.4z"/>`),
@@ -1090,23 +1127,94 @@ const SHARE_NETS = [
   ["telegram", (u, t) => `https://t.me/share/url?url=${u}&text=${t}`],
   ["whatsapp", (u, t) => `https://wa.me/?text=${t}%20${u}`],
   ["viber", (u, t) => `viber://forward?text=${t}%20${u}`],
-  ["x", (u, t) => `https://twitter.com/intent/tweet?url=${u}&text=${t}`, true],
-  ["linkedin", (u, t) => `https://www.linkedin.com/sharing/share-offsite/?url=${u}`, true],
-  ["reddit", (u, t, title) => `https://www.reddit.com/submit?url=${u}&title=${title}`, true]
+  ["x", (u, t) => `https://twitter.com/intent/tweet?url=${u}&text=${t}`],
+  ["linkedin", (u, t) => `https://www.linkedin.com/sharing/share-offsite/?url=${u}`],
+  ["reddit", (u, t, title) => `https://www.reddit.com/submit?url=${u}&title=${title}`]
 ];
 const shareUrl = () => `${PAGE_URL}?lang=${LANG}`;
 
-function renderShare() {
+const SHARE_MS = 6000;
+const COARSE_POINTER = matchMedia("(pointer: coarse)");
+
+function shareButtons(withNative) {
   const S = T[LANG].share;
   const u = encodeURIComponent(shareUrl()), t = encodeURIComponent(S.text), title = encodeURIComponent(S.title);
-  const btn = (net, attrs, extra) => `<${attrs.href ? "a" : "button"} class="share-btn${extra ? " share-extra" : ""}" data-share="${net}" aria-label="${esc(S[net])}" title="${esc(S[net])}" ${attrs.href ? `href="${esc(attrs.href)}"${attrs.href.startsWith("http") ? ` target="_blank" rel="noopener"` : ""}` : `type="button"`}>${ICON[net]}</${attrs.href ? "a" : "button"}>`;
-  const box = $("#share");
-  box.setAttribute("aria-label", S.label);
-  box.classList.toggle("has-native", HAS_NATIVE_SHARE);
-  box.innerHTML = `<span class="share-label" aria-hidden="true">${esc(S.label)}</span>`
-    + (HAS_NATIVE_SHARE ? btn("native", {}) : "")
-    + SHARE_NETS.map(([net, href, extra]) => btn(net, {href: href(u, t, title)}, extra)).join("")
-    + `<span class="share-sep" aria-hidden="true"></span>` + btn("copy", {});
+  const attrs = net => `class="share-btn" data-share="${net}" aria-label="${esc(S[net])}" title="${esc(S[net])}"`;
+  const button = net => `<button type="button" ${attrs(net)}>${ICON[net]}</button>`;
+  const link = (net, href) => `<a ${attrs(net)} href="${esc(href)}"${href.startsWith("http") ? ` target="_blank" rel="noopener"` : ""}>${ICON[net]}</a>`;
+  return (withNative ? button("native") : "")
+    + SHARE_NETS.map(([net, href]) => link(net, href(u, t, title))).join("")
+    + button("copy");
+}
+
+function renderShare() {
+  const S = T[LANG].share;
+  closeSharePanels();
+  const open = $("#share-open");
+  open.innerHTML = `${ICON.native}<span class="share-open-label">${esc(S.label)}</span>`;
+  open.setAttribute("aria-label", S.label);
+  const fab = $("#share-fab");
+  fab.innerHTML = ICON.native;
+  fab.setAttribute("aria-label", S.label);
+  fab.title = S.label;
+  for (const panel of document.querySelectorAll(".share-panel")) {
+    panel.setAttribute("aria-label", S.label);
+    panel.innerHTML = (panel.id === "share-pop" ? `<div class="share-panel-cap" aria-hidden="true">${esc(S.label)}</div>` : "")
+      + `<div class="share-row">${shareButtons(false)}</div><div class="share-timer" aria-hidden="true"></div>`;
+    panel.style.setProperty("--share-ms", SHARE_MS + "ms");
+  }
+}
+
+const sharePanelTimers = new Map();
+function setSharePanel(panel, open) {
+  const trigger = document.querySelector(`[data-share-open="${panel.id}"]`);
+  clearTimeout(sharePanelTimers.get(panel)?.timer);
+  sharePanelTimers.delete(panel);
+  panel.classList.remove("hold");
+  panel.classList.toggle("open", open);
+  trigger.setAttribute("aria-expanded", String(open));
+  if (!open) return;
+  sharePanelTimers.set(panel, {left: SHARE_MS, started: Date.now(), timer: setTimeout(() => setSharePanel(panel, false), SHARE_MS)});
+  const bar = panel.querySelector(".share-timer");
+  bar.style.animation = "none"; void bar.offsetWidth; bar.style.animation = "";
+}
+function closeSharePanels(except) {
+  document.querySelectorAll(".share-panel.open").forEach(p => { if (p !== except) setSharePanel(p, false); });
+}
+function holdSharePanel(panel) {
+  const st = sharePanelTimers.get(panel);
+  if (!st || panel.classList.contains("hold")) return;
+  clearTimeout(st.timer);
+  st.left -= Date.now() - st.started;
+  panel.classList.add("hold");
+}
+function releaseSharePanel(panel) {
+  setTimeout(() => {
+    const st = sharePanelTimers.get(panel);
+    if (!st || !panel.classList.contains("hold") || panel.matches(":hover") || panel.contains(document.activeElement)) return;
+    panel.classList.remove("hold");
+    st.started = Date.now();
+    st.timer = setTimeout(() => setSharePanel(panel, false), st.left);
+  }, 0);
+}
+for (const panel of document.querySelectorAll(".share-panel")) {
+  panel.addEventListener("pointerenter", () => holdSharePanel(panel));
+  panel.addEventListener("focusin", () => holdSharePanel(panel));
+  panel.addEventListener("pointerleave", () => releaseSharePanel(panel));
+  panel.addEventListener("focusout", () => releaseSharePanel(panel));
+}
+
+function openShare(trigger) {
+  const S = T[LANG].share;
+  if (HAS_NATIVE_SHARE && COARSE_POINTER.matches) {
+    window.trackShare?.("native");
+    navigator.share({title: S.title, text: S.text, url: shareUrl()}).catch(() => {});
+    return;
+  }
+  const panel = document.getElementById(trigger.dataset.shareOpen);
+  const open = !panel.classList.contains("open");
+  closeSharePanels(panel);
+  setSharePanel(panel, open);
 }
 
 let toastTimer = null;
@@ -1160,7 +1268,9 @@ function openFactor(id) {
 }
 document.addEventListener("click", e => {
   const sh = e.target.closest("[data-share]");
-  if (sh) { onShare(sh, e); return; }
+  if (sh) { onShare(sh, e); closeSharePanels(); return; }
+  const so = e.target.closest("[data-share-open]");
+  if (so) { openShare(so); return; }
   const go = e.target.closest("[data-go]");
   if (go) { e.preventDefault(); openFactor(go.dataset.go); return; }
   const c = e.target.closest(".cite");
@@ -1170,7 +1280,14 @@ document.addEventListener("click", e => {
   const lb = e.target.closest(".lang button");
   if (lb) setLang(lb.dataset.lang);
 });
+document.addEventListener("pointerdown", e => {
+  if (!e.target.closest(".share-panel, [data-share-open]")) closeSharePanels();
+});
 document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    const panel = document.querySelector(".share-panel.open");
+    if (panel) { setSharePanel(panel, false); document.querySelector(`[data-share-open="${panel.id}"]`).focus(); }
+  }
   const go = e.target.closest?.("path[data-go]");
   if (go && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openFactor(go.dataset.go); }
 });
