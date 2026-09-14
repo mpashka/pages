@@ -334,6 +334,9 @@ footer { padding-block: 40px 60px; color: var(--ink-3); font-size: 13px; border-
 }
 .share-end h2 { font-size: clamp(18px, 2.2vw, 22px); margin: 0; }
 .share-end p { margin: 6px 0 0; color: var(--ink-2); font-size: 15px; max-width: 52ch; }
+.feedback { margin: 10px 0 0; font-size: 14px; }
+.feedback a { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); }
+.feedback svg { width: 16px; height: 16px; flex: none; }
 @media (max-width: 760px) { .share-end { grid-template-columns: 1fr; } .share-end .share-row { margin-left: -10px; } }
 
 .toast {
@@ -456,7 +459,7 @@ const COICOP = {
 
 const T = {
 ru: {
-  share: {label:"Поделиться", text:"Почему цены в Сербии выросли в 2019–2025 годах и насколько на это повлиял приток русских мигрантов — анализ на данных RGZ, NBS и Евростата", title:"Кто поднял цены в Сербии?", copied:"Ссылка скопирована", native:"Поделиться…", facebook:"Поделиться в Facebook", telegram:"Отправить в Telegram", whatsapp:"Отправить в WhatsApp", viber:"Отправить в Viber", x:"Поделиться в X", linkedin:"Поделиться в LinkedIn", reddit:"Опубликовать на Reddit", copy:"Скопировать ссылку", endTitle:"Поделиться исследованием", endText:"Ссылка откроется на русском; сербская и английская версии — в шапке страницы."},
+  share: {label:"Поделиться", text:"Почему цены в Сербии выросли в 2019–2025 годах и насколько на это повлиял приток русских мигрантов — анализ на данных RGZ, NBS и Евростата", title:"Кто поднял цены в Сербии?", copied:"Ссылка скопирована", native:"Поделиться…", facebook:"Поделиться в Facebook", telegram:"Отправить в Telegram", whatsapp:"Отправить в WhatsApp", viber:"Отправить в Viber", x:"Поделиться в X", linkedin:"Поделиться в LinkedIn", reddit:"Опубликовать на Reddit", copy:"Скопировать ссылку", endTitle:"Поделиться исследованием", endText:"Ссылка откроется на русском; сербская и английская версии — в шапке страницы.", feedback:"Нашли ошибку или не согласны с выводом? Напишите на GitHub", feedbackTitle:"Кто поднял цены в Сербии: "},
   htmlTitle: "Кто поднял цены в Сербии",
   nav: {tldr:"Коротко", prices:"Все цены", food:"Еда", flats:"Квартиры", rent:"Аренда", migrants:"Русские", cars:"Машины", method:"Метод", sources:"Источники"},
   eyebrow: "Сербия · 2019–2025 · официальная статистика",
@@ -598,7 +601,7 @@ ru: {
 },
 
 sr: {
-  share: {label:"Podeli", text:"Zašto su cene u Srbiji porasle 2019–2025. i koliko je na to uticao priliv ruskih migranata — analiza na podacima RGZ, NBS i Eurostata", title:"Ko je podigao cene u Srbiji?", copied:"Link kopiran", native:"Podeli…", facebook:"Podeli na Facebooku", telegram:"Pošalji na Telegram", whatsapp:"Pošalji na WhatsApp", viber:"Pošalji na Viber", x:"Podeli na X", linkedin:"Podeli na LinkedInu", reddit:"Objavi na Redditu", copy:"Kopiraj link", endTitle:"Podelite istraživanje", endText:"Link se otvara na srpskom; ruska i engleska verzija su u zaglavlju stranice."},
+  share: {label:"Podeli", text:"Zašto su cene u Srbiji porasle 2019–2025. i koliko je na to uticao priliv ruskih migranata — analiza na podacima RGZ, NBS i Eurostata", title:"Ko je podigao cene u Srbiji?", copied:"Link kopiran", native:"Podeli…", facebook:"Podeli na Facebooku", telegram:"Pošalji na Telegram", whatsapp:"Pošalji na WhatsApp", viber:"Pošalji na Viber", x:"Podeli na X", linkedin:"Podeli na LinkedInu", reddit:"Objavi na Redditu", copy:"Kopiraj link", endTitle:"Podelite istraživanje", endText:"Link se otvara na srpskom; ruska i engleska verzija su u zaglavlju stranice.", feedback:"Pronašli ste grešku ili se ne slažete sa zaključkom? Pišite na GitHubu", feedbackTitle:"Ko je podigao cene u Srbiji: "},
   htmlTitle: "Ko je podigao cene u Srbiji",
   nav: {tldr:"Ukratko", prices:"Sve cene", food:"Hrana", flats:"Stanovi", rent:"Kirije", migrants:"Rusi", cars:"Automobili", method:"Metod", sources:"Izvori"},
   eyebrow: "Srbija · 2019–2025 · zvanična statistika",
@@ -740,7 +743,7 @@ sr: {
 },
 
 en: {
-  share: {label:"Share", text:"Why prices in Serbia rose in 2019–2025 and how much the inflow of Russian migrants contributed — an analysis of RGZ, NBS and Eurostat data", title:"Who raised prices in Serbia?", copied:"Link copied", native:"Share…", facebook:"Share on Facebook", telegram:"Send via Telegram", whatsapp:"Send via WhatsApp", viber:"Send via Viber", x:"Share on X", linkedin:"Share on LinkedIn", reddit:"Post to Reddit", copy:"Copy link", endTitle:"Share this analysis", endText:"The link opens in English; Serbian and Russian versions are in the page header."},
+  share: {label:"Share", text:"Why prices in Serbia rose in 2019–2025 and how much the inflow of Russian migrants contributed — an analysis of RGZ, NBS and Eurostat data", title:"Who raised prices in Serbia?", copied:"Link copied", native:"Share…", facebook:"Share on Facebook", telegram:"Send via Telegram", whatsapp:"Send via WhatsApp", viber:"Send via Viber", x:"Share on X", linkedin:"Share on LinkedIn", reddit:"Post to Reddit", copy:"Copy link", endTitle:"Share this analysis", endText:"The link opens in English; Serbian and Russian versions are in the page header.", feedback:"Spotted an error or disagree with a conclusion? Write on GitHub", feedbackTitle:"Who raised prices in Serbia: "},
   htmlTitle: "Who Raised Prices in Serbia",
   nav: {tldr:"TL;DR", prices:"All prices", food:"Food", flats:"Flats", rent:"Rent", migrants:"Russians", cars:"Cars", method:"Method", sources:"Sources"},
   eyebrow: "Serbia · 2019–2025 · official statistics",
@@ -1054,7 +1057,7 @@ function render() {
   </section>
 
   <aside class="share-end" aria-labelledby="share-end-title">
-    <div><h2 id="share-end-title">${esc(L.share.endTitle)}</h2><p>${esc(L.share.endText)}</p></div>
+    <div><h2 id="share-end-title">${esc(L.share.endTitle)}</h2><p>${esc(L.share.endText)}</p><p class="feedback">${feedbackLink()}</p></div>
     <div class="share-row">${shareButtons(HAS_NATIVE_SHARE)}</div>
   </aside>
 
@@ -1070,7 +1073,7 @@ function render() {
     <ol class="sources">${Object.entries(SRC).map(([id, [k, title, url]]) => `<li id="src-${id}"><span class="src-id">${id}</span><span><span class="src-kind">${k}</span><a class="src-title" href="${esc(url)}" rel="noopener" target="_blank">${esc(title)}</a><a class="src-back" href="#" data-back>${esc(L.sources.back)}</a></span></li>`).join("")}</ol>
   </section>
 
-  <footer>${esc(L.footer)}</footer>`;
+  <footer>${esc(L.footer)}<p class="feedback">${feedbackLink()}</p></footer>`;
 
   const C = COUNTRY[LANG];
 
@@ -1120,6 +1123,7 @@ const ICON = {
   x: svg(`<path fill="currentColor" stroke="none" d="M3.8 3.5h4.9l11.5 17h-4.9z"/><path d="m19.8 3.5-6.6 7.4M4.2 20.5l6.7-7.5"/>`),
   linkedin: svg(`<rect x="2.8" y="2.8" width="18.4" height="18.4" rx="3"/><path fill="currentColor" stroke="none" d="M7 10h2.3v7H7zm1.2-3.8a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6zM11 10h2.2v1c.4-.7 1.2-1.2 2.3-1.2 2 0 2.6 1.3 2.6 3.2v4h-2.3v-3.5c0-.9-.2-1.7-1.1-1.7-1 0-1.4.7-1.4 1.7V17H11z"/>`),
   reddit: svg(`<ellipse cx="12" cy="14.6" rx="8" ry="5.6"/><circle cx="4.7" cy="10.6" r="1.6"/><circle cx="19.3" cy="10.6" r="1.6"/><path d="M12 9 13.2 3.9l3.6.8"/><circle cx="18.3" cy="5" r="1.4"/><circle fill="currentColor" stroke="none" cx="9" cy="13.7" r="1.2"/><circle fill="currentColor" stroke="none" cx="15" cy="13.7" r="1.2"/><path d="M9.2 16.9c1.7 1 3.9 1 5.6 0"/>`),
+  github: svg(`<path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>`),
   copy: svg(`<path d="M10 14a4.2 4.2 0 0 0 6 0l3-3a4.2 4.2 0 0 0-6-6l-1.1 1.1M14 10a4.2 4.2 0 0 0-6 0l-3 3a4.2 4.2 0 0 0 6 6l1.1-1.1"/>`)
 };
 const SHARE_NETS = [
@@ -1132,6 +1136,8 @@ const SHARE_NETS = [
   ["reddit", (u, t, title) => `https://www.reddit.com/submit?url=${u}&title=${title}`]
 ];
 const shareUrl = () => `${PAGE_URL}?lang=${LANG}`;
+const feedbackUrl = () => `https://github.com/mpashka/pages/issues/new?template=feedback.yml&title=${encodeURIComponent(T[LANG].share.feedbackTitle)}&page=${encodeURIComponent(shareUrl())}`;
+const feedbackLink = () => `<a href="${esc(feedbackUrl())}" target="_blank" rel="noopener">${ICON.github}${esc(T[LANG].share.feedback)}</a>`;
 
 const SHARE_MS = 6000;
 const COARSE_POINTER = matchMedia("(pointer: coarse)");
